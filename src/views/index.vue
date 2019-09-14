@@ -26,20 +26,36 @@
       </mt-tab-container-item>
       <mt-tab-container-item id="discover">
 				<!-- discover面板组件 -->
+				<search></search>
+				<div class="search-fill"></div>
+				<carousel></carousel>
+				<radio></radio>
+				<h4>车是买那不能大苏打</h4>
       </mt-tab-container-item>
+				<h4>面板1</h4>
     </mt-tab-container>
   </div>
 </template>
 <script>
+import search from "../components/search";
+import carousel from "../components/carousel";
+import radio from "../components/radio";
 export default {
   data() {
     return {
       active: "discover"
     };
-  }
+  },
+	components:{
+		search,carousel,radio
+	}
 };
 </script>
 <style scoped>
+.search-fill{
+    width: 100%;
+    height:3rem;
+  }
 	.top-fill{
 		width: 100%;
 		height: 3.5rem;
@@ -60,6 +76,7 @@ export default {
 	 padding: 0 3%;
 	 position: fixed;
 	 width: 100%;
+	 height: 3.7rem;
 	 left: 0;
 	 top: 0;
 	 border-bottom:2px solid #fff; 
@@ -74,7 +91,6 @@ export default {
 	 flex-direction: column;
 	 justify-content: center;
 	 width: 100%;
-	 height: 3.7rem;
  }
  .navbar-icon{
 	 display: flex;
