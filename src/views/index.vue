@@ -30,7 +30,9 @@
 				<div class="search-fill"></div>
 				<carousel></carousel>
 				<radio></radio>
-				<h4>车是买那不能大苏打</h4>
+				<play-list></play-list>
+				<moo-track></moo-track>
+				<!-- <h4>车是买那不能大苏打</h4> -->
       </mt-tab-container-item>
 				<h4>面板1</h4>
     </mt-tab-container>
@@ -40,6 +42,8 @@
 import search from "../components/search";
 import carousel from "../components/carousel";
 import radio from "../components/radio";
+import playList from "../components/palyList";
+import mooTrack from "../components/track";
 export default {
   data() {
     return {
@@ -47,7 +51,7 @@ export default {
     };
   },
 	components:{
-		search,carousel,radio
+		search,carousel,radio,playList,mooTrack
 	}
 };
 </script>
@@ -79,8 +83,8 @@ export default {
 	 height: 3.7rem;
 	 left: 0;
 	 top: 0;
-	 border-bottom:2px solid #fff; 
-	 z-index: 1;
+	 /* border-bottom:2px solid #fff;  */
+	 z-index: 10;
  }
  .navbar-title span{
 	 font-size: 1.8rem;

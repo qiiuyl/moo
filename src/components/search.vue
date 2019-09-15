@@ -53,6 +53,7 @@ export default {
     background:url("../../public/images/ic_search_white_30dp.png") #000 no-repeat 0.5rem;
     background-size: 1.6rem;
     color: #fff;
+    padding: 0;
     padding-left: 2.5rem;
   }
   .search-input:focus{

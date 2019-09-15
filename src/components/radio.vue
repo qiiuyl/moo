@@ -43,8 +43,8 @@ export default {
   },
   created() {
     this.getDate();
-    console.log(this.radioDate);
-    console.log(this.month);
+    // console.log(this.radioDate);
+    // console.log(this.month);
   }
 };
 </script>

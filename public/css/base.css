@@ -7,6 +7,15 @@ a{
 	text-decoration: none;
 	color: #fff;
 }
+ul{
+	padding: 0;
+	list-style: none;
+	margin: 0;
+}
+/* 给所有img加上圆角 */
+img{
+	border-radius: 0.5rem;
+}
 #app{
 	color:#fff;
 }
@@ -24,7 +33,7 @@ a{
 .my-title{
 	font-family: 'Kastelov';
 	color: #fff;
-	font-size: 1.25rem;
+	font-size: 1rem;
 	margin: 0.5rem 0;
 	line-height: 1.25rem;
 }
