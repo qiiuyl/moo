@@ -1,3 +1,48 @@
 body{
 	background-color: #1a1a1a;
+	color: #fff;
+	font-size: 16px;
+}
+a{
+	text-decoration: none;
+	color: #fff;
+}
+ul{
+	padding: 0;
+	list-style: none;
+	margin: 0;
+}
+/* 给所有img加上圆角 */
+img{
+	border-radius: 0.5rem;
+}
+#app{
+	color:#fff;
+}
+/* 每个页面距离边框的内边距为3% */
+.inner-border{
+	padding: 0 3%;
+	box-sizing: border-box;
+}
+/* 12号像素最小字体 */
+.my-small{
+	color:#999;
+	font-size: 0.75rem;
+}
+/* discover里面的title */
+.my-title{
+	font-family: 'Kastelov';
+	color: #fff;
+	font-size: 0.8rem;
+	margin: 0.5rem 0;
+	line-height: 1.25rem;
+}
+/* 自定义字体 */
+@font-face{
+	font-family: "PaulGroteskSoft";
+	src: url("../font/PaulGroteskSoft-Bold.otf")
+}
+@font-face{
+	font-family: "Kastelov";
+	src: url("../font/Kastelov Axiforma ExtraBold.otf")
 }
