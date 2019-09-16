@@ -1,0 +1,58 @@
+<template>
+	<div class="album-item">
+		<div class="album-img">
+			<img src="images\jielun.jpg" alt="" class="main-img">
+			<img src="images\album_vinyl_full.png" alt="" class="bg-img">
+		</div>
+		<div class="album-info">
+			<span class="album-name">我想要的(I,Me,Mine)</span>
+			<span class="album-author">家家</span>
+			<tag :place="false"></tag>
+		</div>
+	</div>
+</template>
+
+<script>
+import tag from "./tag";
+export default {
+	components:{
+		tag
+	}
+}
+</script>
+
+<style scoped>
+.album-author{
+	margin: 0.5rem 0;
+}
+.album-info{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-left:1rem; 
+}
+.album-img{
+	position: relative;
+	margin-left:1.2rem; 
+	width: 42%;
+}
+.album-img img{
+	width: 100%;
+}
+.main-img{
+	position: absolute;
+	left: -1.2rem;
+	top: 0;
+}
+.album-item{
+	display: flex;
+	margin-bottom: 1rem;
+}
+.album-name{
+	font-size: 1rem;
+}
+.album-author{
+	font-size: 0.8rem;
+	color: #999;
+}
+</style>

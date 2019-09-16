@@ -32,9 +32,11 @@
 				<radio></radio>
 				<play-list></play-list>
 				<moo-track></moo-track>
+				<album></album>
+				<moo-video></moo-video>
+				<tag-list></tag-list>
 				<!-- <h4>车是买那不能大苏打</h4> -->
       </mt-tab-container-item>
-				<h4>面板1</h4>
     </mt-tab-container>
   </div>
 </template>
@@ -44,6 +46,9 @@ import carousel from "../components/carousel";
 import radio from "../components/radio";
 import playList from "../components/palyList";
 import mooTrack from "../components/track";
+import album from "../components/album";
+import mooVideo from "../components/video";
+import tagList from "../components/tagList";
 export default {
   data() {
     return {
@@ -51,7 +56,7 @@ export default {
     };
   },
 	components:{
-		search,carousel,radio,playList,mooTrack
+		search,carousel,radio,playList,mooTrack,album,mooVideo,tagList
 	}
 };
 </script>

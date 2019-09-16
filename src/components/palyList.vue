@@ -8,8 +8,8 @@
       <div class="first-item">
         <div class="list-item">
           <img src="images/playlist.jpg" alt class="listimg" />
-          <router-link to="/" class="my-small list-tag">#是个标签</router-link>
-          <img src="images/ic_bk_music_note_with_circle_white.png" alt class="list-icon" />
+          <tag :place="true"></tag>
+          <icon></icon>
         </div>
         <div class="first-info">
           <img src="images/ic_bk_text_20_plus_detail.png" alt />
@@ -19,17 +19,31 @@
       <div class="list-item">
         <div class="list-top">
           <img src="images/playlist.jpg" alt class="listimg" />
-          <router-link to="/" class="my-small list-tag">#是个标签</router-link>
-          <img src="images/ic_bk_music_note_with_circle_white.png" alt class="list-icon" />
+          <tag :place="true"></tag>
+          <icon></icon>          
         </div>
-        <span class="list-info">45gd4g65fddsadasdasd4g3</span>
+        <span class="list-info">刘耀威的第一张专辑</span>
+      </div>
+       <div class="list-item">
+        <div class="list-top">
+          <img src="images/playlist.jpg" alt class="listimg" />
+          <tag :place="true"></tag>
+          <icon></icon>          
+        </div>
+        <span class="list-info">邱玉丽的第一张专辑</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import tag from "./tag";
+import icon from "./musicIcon";
+export default {
+  components:{
+    tag,icon
+  }
+};
 </script>
 
 <style scoped>
@@ -70,37 +84,22 @@ export default {};
 .list-item {
   width: 49%;
   /* overflow: visible; */
+  position: relative;
 }
 .list-top {
   position: relative;
   display: flex;
 }
 .list-info{
-  display: block;
-  width: 100%;
-  font-size: 1.3rem;
+  overflow-wrap:break-word;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
-  overflow: hidden;
+  overflow: hidden; 
+  margin-top: 0.3rem;
 }
-.list-tag {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-  padding: 0.5rem 1rem;
-  display: block;
-  background: #ffe133;
-  border-radius: 2rem;
-  color: #000;
-}
-.list-icon {
-  position: absolute;
-  bottom: 0.4rem;
-  right: 0.4rem;
-  width: 1.3rem;
-}
+
+
 .list-header {
   padding: 0.5rem 0;
   display: flex;
