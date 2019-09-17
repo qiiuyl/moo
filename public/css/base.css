@@ -2,10 +2,12 @@ body{
 	background-color: #1a1a1a;
 	color: #fff;
 	font-size: 16px;
+	font-family: "Chinessnomal";
 }
 a{
 	text-decoration: none;
 	color: #fff;
+	font-family: "Chinessnomal";
 }
 ul{
 	padding: 0;
@@ -45,4 +47,8 @@ img{
 @font-face{
 	font-family: "Kastelov";
 	src: url("../font/Kastelov Axiforma ExtraBold.otf")
+}
+@font-face{
+	font-family: "Chinessnomal";
+	src: url("../font/Chinessnomal.ttf")
 }

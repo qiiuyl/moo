@@ -6,10 +6,7 @@
 
 <script>
 export default {
-  props:['place'],
-  created(){
-    console.log(this.place);
-  }
+  props:['place']
 }
 </script>
 

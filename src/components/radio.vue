@@ -1,5 +1,5 @@
 <template>
-  <div class="radio">
+  <div class="radio inner-border">
     <div class="img-group">
       <img src="images/taoze.jpg" alt/>
       <div class="big-img">

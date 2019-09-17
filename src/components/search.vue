@@ -1,5 +1,5 @@
 <template>
-  <div class="search inner-border" ref="sc">
+  <div class="search inner-border" ref="sc" :class="place?'placeclass':''">
       <input type="text" v-model="value" class="search-input">
   </div>
 </template>
@@ -25,29 +25,34 @@ export default {
     }
    } 
   },
+  props:[
+    'place'
+  ],
   created(){
     this.scoll();
   }
 }
 </script>
 <style scoped>
+.placeclass{
+   position: fixed;
+    z-index: 1;
+    width: 100%;
+    left: 0;
+    top: 3.7rem;
+}
   .search{
     /* background: #fff; */
     height: 3rem;
     display: flex;
     align-items: center; 
     /* border: 1px solid #fff; */
-    position: fixed;
-    z-index: 1;
-    width: 100%;
-    left: 0;
-    top: 3.7rem;
     background: #1a1a1a;
     transition: height 0.3s linear;
   }
   .search-input{
     width: 100%;
-    height: 50%;
+    height: 65%;
     border-radius:1.5rem; 
     border: 0;
     background:url("../../public/images/ic_search_white_30dp.png") #000 no-repeat 0.5rem;
