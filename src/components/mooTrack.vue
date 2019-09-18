@@ -63,6 +63,7 @@ export default {
   top:120px;
 }
 .bg-image h4{
+  font-family: "PaulGroteskSoft";
   position:absolute;
   top:140px;
 }
