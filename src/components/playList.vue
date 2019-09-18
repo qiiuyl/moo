@@ -1,5 +1,5 @@
 <template>
-  <div class="play-list">
+  <div class="play-list inner-border">
     <router-link class="list-header" to="/">
       <span class="my-title">MOO Playlist_歌单</span>
       <img src="images/ic_round_arrow_back_ios_white_24px.png" alt />
@@ -35,6 +35,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import tag from "./tag";
 import icon from "./musicIcon";
