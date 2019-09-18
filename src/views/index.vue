@@ -27,7 +27,7 @@
       </mt-tab-container-item>
       <mt-tab-container-item id="discover">
 				<!-- discover面板组件 -->
-				<search></search>
+				<search :place="true"></search>
 				<div class="search-fill"></div>
 				<carousel></carousel>
 				<radio></radio>
@@ -45,7 +45,7 @@
 import search from "../components/search";
 import carousel from "../components/carousel";
 import radio from "../components/radio";
-import playList from "../components/palyList";
+import playList from "../components/playList";
 import mooTrack from "../components/track";
 import album from "../components/album";
 import mooVideo from "../components/video";
