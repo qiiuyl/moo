@@ -1,5 +1,5 @@
 <template>
-  <div class="video">
+  <div class="video inner-border">
     <router-link class="list-header" to="/">
       <span class="my-title">MOO Video_视频</span>
       <img src="images/ic_round_arrow_back_ios_white_24px.png" alt />

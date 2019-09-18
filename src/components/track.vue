@@ -1,5 +1,5 @@
 <template>
-  <div class="track">
+  <div class="track inner-border">
     <router-link class="list-header" to="/">
       <span class="my-title">MOO Track_歌单</span>
       <img src="images/ic_round_arrow_back_ios_white_24px.png" alt />
