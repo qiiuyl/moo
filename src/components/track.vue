@@ -9,6 +9,8 @@
     <song-item></song-item>
     <song-item></song-item>
     <song-item></song-item>
+    <song-item></song-item>
+    <song-item></song-item>
   </div>
 </template>
 
