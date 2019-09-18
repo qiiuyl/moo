@@ -1,8 +1,10 @@
 <template>
     <div id="bg" class="inner-border">
-      <!-- <img src="../../public/images/ic_round_drop_down_24dp_white.png" alt=""> -->
       <div id="title">
         <h2>Because of you(因为你)-Kelly Clarkson(凯丽.克拉克森)</h2>
+      </div>
+      <div id="song-play">
+        <img src="../../public/images/ic_round_drop_down_24dp_white.png" alt="">
       </div>
       <div id="tag">
         <ul>
@@ -16,8 +18,8 @@
       </div>
       <div id="bottom">
         <div id="bottom_top">
-          <h2>Because Of YouBecause Of YouBecause Of</h2>
-          <p><img src="../../public/images/zan.png"></p>
+          <h3>Because Of YouBecause Of YouBecause Of</h3>
+          <p><img src="../../public/images/unzan.png"></p>
         </div>
         <div id="bottom_bottom">
           <p id="user"><span></span>Kelly Clarkson</p>
@@ -27,25 +29,12 @@
     </div>
 </template>
 <style scoped>
-  .search-fill{
-    width: 100%;
-    height:3rem;
-  }
   #bg{
     width:100%;
     height:812px;
     background:url("../../public/images/bg.jpg") no-repeat;
     background-size:cover;
     position:relative;  
-  }
-  #bg>img{
-    width:80px;
-    height:80px;
-    position:absolute;
-    top:50%;
-    right:50%;
-    transform:translate(40px,-40px);
-    z-index:0.5;
   }
   #bg #title{
     width:100%;
@@ -60,9 +49,20 @@
     padding-top:30%;
     box-sizing:border-box;
   }
+  #song-play{
+    height:45%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:0;
+  }
+  #song-play img{
+    width:25%;
+    height:25%;
+  }
   #bg #tag{
     width:100%;
-    height:50%;
+    height:10%;
     display:flex;
     align-items:flex-end;
     z-index:1;
@@ -86,9 +86,7 @@
   }
   #bg #bottom{
     width:100%;
-    height:25%;
-    margin-bottom:2rem;
-    padding-top:5%;
+    height:20%;
     box-sizing:border-box;
   }
   #bg #bottom #bottom_top,#bottom_bottom{
