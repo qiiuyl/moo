@@ -1,5 +1,8 @@
 <template>
   <div class="song-item">
+    <div class="song-checked" v-show="is_select" :style="is_select?'width:10%':'width:0'">
+      <input type="checkbox"/>
+    </div>
     <div class="song-info">
       <img src="images/jielun.jpg" alt />
       <div class="info">
@@ -7,7 +10,7 @@
         <span class="my-small">周杰伦</span>
       </div>
     </div>
-    <div class="more" @click="open">
+    <div class="more" @click="open" v-show="!is_select">
       <img src="images/ic_bk_more_horizontal_fat_white_48dp.png" alt />
     </div>
     <div class="more-list" ref="list">
@@ -78,6 +81,7 @@ export default {
   data() {
     return {};
   },
+  props: ["is_select"],
   methods: {
     close() {
       this.$refs.box.style.height = 0;
@@ -90,25 +94,46 @@ export default {
       // window.event.returnValue="false";
       // oDiv.addEventListener("DOMMouseScroll",function(ev){ev.preventDefault();} , false);
       setTimeout(() => {
-        this.$refs.box.style.height = "82%";
+        this.$refs.box.style.height = "auto";
         // window.preventDefault();
       }, 100);
     }
-  }
+  },
+  created() {}
 };
 </script>
 
 <style scoped>
-.box-top{
+.box-top {
   margin-top: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+.song-checked {
+  width: 5%;
+}
+.song-checked input[type="checkbox"] {
+  /* transition:all 1s linear; */
+  width: 1rem;
+  height: 1rem;
+  background-color: transparent;
+  -webkit-appearance: none;
+  border: 1px solid #c9c9c9;
+  border-radius: 50%;
+  outline: none;
+}
+.song-checked input[type="checkbox"]:checked {
+  background: url("../../public/images/scan_finish_icon.png") no-repeat center
+    center;
+  background-size: cover;
+  border: 0;
+}
 .song-info {
-  width: 80%;
+  width: 90%;
   display: flex;
   align-items: center;
+  overflow: hidden;
 }
 .song-info img {
   width: 20%;
@@ -127,7 +152,7 @@ export default {
 }
 .close {
   text-align: center;
-  margin-right:1rem; 
+  margin-right: 1rem;
 }
 .close img {
   width: 2rem;
@@ -182,7 +207,7 @@ export default {
 }
 .song-item {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   margin-bottom: 1rem;
 }
