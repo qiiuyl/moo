@@ -13,16 +13,17 @@
 			</div>
 			<router-link to="/my">
 				<div class="myimg">
-					<img src="http://m.360buyimg.com/mobilecms/s120x120_jfs/t17725/156/1767366877/17404/f45d418b/5ad87bf0N66c5db7c.png" alt="">
+					<img src="../../public/images/user.jpg" alt="">
 				</div>
 			</router-link>
 		</div>
 		<!-- 上方脱离了文本流加个占位标签 -->
-		<div class="top-fill"></div>
+		<div class="top-fill" v-if="active=='discover'"></div>
     <!-- 面板组件 -->
     <mt-tab-container v-model="active" swipeable>
       <mt-tab-container-item id="play">
 				<!-- play面板组件 -->
+				<play></play>
       </mt-tab-container-item>
       <mt-tab-container-item id="discover">
 				<!-- discover面板组件 -->
@@ -49,6 +50,7 @@ import mooTrack from "../components/track";
 import album from "../components/album";
 import mooVideo from "../components/video";
 import tagList from "../components/tagList";
+import play from "../components/play";
 export default {
   data() {
     return {
@@ -56,7 +58,7 @@ export default {
     };
   },
 	components:{
-		search,carousel,radio,playList,mooTrack,album,mooVideo,tagList
+		search,carousel,radio,playList,mooTrack,album,mooVideo,tagList,play
 	}
 };
 </script>
@@ -65,7 +67,7 @@ export default {
     width: 100%;
     height:3rem;
   }
-	.top-fill{
+.top-fill{
 		width: 100%;
 		height: 3.5rem;
 	}
@@ -81,7 +83,7 @@ export default {
 	 align-items: center;
 	 display: flex;
 	 justify-content: space-between;
-	 background-color: #1a1a1a;
+	 /* background-color: #1a1a1a; */
 	 padding: 0 3%;
 	 position: fixed;
 	 width: 100%;
