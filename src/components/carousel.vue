@@ -1,5 +1,5 @@
 <template>
-  <div class="carousel" :style="`height:${carouselHeight}px`">
+  <div class="carousel inner-border" :style="`height:${carouselHeight}px`">
     <mt-swipe :auto="3000">
       <mt-swipe-item>
         <img src="images/showimg.jpg" alt="" class="carousel-img">

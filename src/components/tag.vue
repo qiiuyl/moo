@@ -1,15 +1,12 @@
 <template>
 <div>
-	<router-link to="/" class="my-small list-tag" :class="place?'place':''">#是个标签1</router-link>
+	<router-link to="/" class="my-small list-tag" :class="place?'place':''">#标签1</router-link>
 </div>
 </template>
 
 <script>
 export default {
-  props:['place'],
-  created(){
-    console.log(this.place);
-  }
+  props:['place']
 }
 </script>
 
@@ -20,6 +17,7 @@ export default {
   border-radius: 2rem;
   color: #000;
   padding: 0.5rem 1rem;
+  white-space: nowrap;
 }
 .place{
   position: absolute;
