@@ -22,22 +22,30 @@
       </div>
       <!-- 完成图片 -->
       <div class="distwo">
-        <a href="#"><img src="images/ic_list_operation_batch_white_30dp.png" class="Finished" /></a>
+        <div @click="changeShow"><img src="images/ic_list_operation_batch_white_30dp.png" class="Finished" /></div>
       </div>
     </div>
-    <song-item></song-item>
-    <song-item></song-item>
-    <song-item></song-item>
-    <song-item></song-item>
-    <song-item></song-item>
-    <song-item></song-item>
-    <song-item></song-item>
-    <song-item></song-item>
+    <song-item :is_select="showSelect"></song-item>
+    <song-item :is_select="showSelect"></song-item>
+    <song-item :is_select="showSelect"></song-item>
+    <song-item :is_select="showSelect"></song-item>
+    <song-item :is_select="showSelect"></song-item>
+    <song-item :is_select="showSelect"></song-item>
   </div>
 </template>
 <script>
 import songItem from './songItem'
 export default {
+  data(){
+    return {
+      showSelect:false
+    }
+  },
+  methods:{
+    changeShow(){
+      this.showSelect=!this.showSelect;
+    }
+  },
   components:{
     songItem
   }
@@ -48,7 +56,7 @@ export default {
   margin: 0 -3%;
 }
 .bg-image div{
-  height:11.25rem;
+  height:15rem;
   background:url("../../public/images/detail_moo_track_header_bg.png") no-repeat;
   background-size:contain;
   position: relative;
@@ -56,16 +64,16 @@ export default {
 .bg-image h5,h4{
   margin-top:0px;
   margin-bottom: 0px;
-  margin-left:10px;
+  margin-left:0.62rem;
 }
 .bg-image h5{
   position:absolute;
-  top:120px;
+  top:10.31rem;
 }
 .bg-image h4{
   font-family: "PaulGroteskSoft";
   position:absolute;
-  top:140px;
+  top:11.56rem;
 }
 .mint-header {
   background: transparent;
