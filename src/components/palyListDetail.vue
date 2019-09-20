@@ -1,18 +1,6 @@
 <template>
   <div class="playlist-detail inner-border">
-    <mt-header fixed>
-      <router-link to="/" slot="left">
-        <mt-button>
-          <img src="images/ic_round_arrow_back_ios_white_24px.png" alt class="backicon" />
-        </mt-button>
-      </router-link>
-      <mt-button slot="right">
-        <img src="images/ic_bk_share_story.png" alt />
-      </mt-button>
-      <mt-button slot="right">
-        <img src="images/ic_bk_more_horizontal_fat_white_48dp.png" alt />
-      </mt-button>
-    </mt-header>
+    <back-header :title="'视频标题'" :bgcolor="true" :more="true" :share="true"></back-header>
     <search :place="false"></search>
     <div class="list-cover">
       <img src="images/IMG_3601.GIF" alt class="list-img" />
@@ -44,7 +32,6 @@
         <tag></tag>
       </div>
     </div>
-    <button @click="change_select">小威与某丽</button>
     <song-item :is_select="show_select"></song-item>
     <song-item :is_select="show_select"></song-item>
     <song-item :is_select="show_select"></song-item>
@@ -59,6 +46,7 @@ import search from "./search";
 import musicIcon from "./musicIcon";
 import tag from "./tag";
 import songItem from "./songItem";
+import backHeader from "./back_header";
 export default {
   data() {
     return {
@@ -71,7 +59,8 @@ export default {
     search,
     musicIcon,
     tag,
-    songItem
+    songItem,
+    backHeader
   },
   methods: {
   change_select(){

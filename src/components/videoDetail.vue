@@ -1,12 +1,6 @@
 <template>
   <div class="video-detail">
-    <mt-header fixed class="inner-border">
-      <router-link to="/" slot="left">
-        <mt-button>
-          <img src="images/ic_round_arrow_back_ios_white_24px.png" alt class="backicon" />
-        </mt-button>
-      </router-link>
-    </mt-header>
+    <back-header :title="'视频标题'" :bgcolor="true"></back-header>
     <div class="fill"></div>
     <video src="video/x.mp4" controls></video>
     <div class="list-info inner-border">
@@ -63,7 +57,7 @@
     </div>
     <div class="content-box inner-border">
       <span class="title">评论</span>
-      <comment></comment>
+      <comment :open="show_comment" :position="show_comment"></comment>
     </div>
   </div>
   
@@ -75,12 +69,14 @@ import musicIcon from "./musicIcon";
 import tag from "./tag";
 import songItem from "./songItem";
 import comment from "./comment";
+import backHeader from "./back_header";
 export default {
   data() {
     return {
       width: 0,
       show_select: false,
-      select_list: []
+      select_list: [],
+      show_comment:false
     };
   },
   components: {
@@ -88,9 +84,14 @@ export default {
     musicIcon,
     tag,
     songItem,
-    comment
+    comment,
+    backHeader
   },
   methods: {
+    open(){
+      this.show_comment=!this.show_comment;
+      // console.log(this.show_comment);
+    },
     change_select() {
       this.show_select = !this.show_select;
       // console.log(this.select_list)
@@ -153,7 +154,6 @@ export default {
 </script>
 
 <style scoped>
-
 .play-title {
   display: -webkit-box;
   -webkit-box-orient: vertical;
