@@ -22,12 +22,18 @@ export default {
     }
   },
   methods:{
+    getlist(){
+      this.axios.get('/carousel').then(result=>{
+        console.log(result.data);
+      });
+    },
     getWidth(){
       this.carouselHeight=window.innerWidth/2;
     }
   },
   created(){
     this.getWidth();
+    this.getlist();
     // console.log(this.carouselHeight);
   }
 };

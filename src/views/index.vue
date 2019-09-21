@@ -1,6 +1,6 @@
 <template>
   <div class="index">
-		<div class="index-header">
+		<div class="index-header" :class="active=='discover'?'bg':''">
 			<div class="navbar-title">
 				<div >
 					<span v-show="active=='play'">PLAY</span>
@@ -77,6 +77,9 @@ export default {
 .myimg img{
 	border-radius:50%; 
 	width: 100%;
+}
+.bg{
+	background-color: #1a1a1a;
 }
  .index-header{
 	 box-sizing: border-box;

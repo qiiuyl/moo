@@ -1,10 +1,14 @@
 <template>
-	<h1>这是个测试文件</h1>
+	<div class="login">
+			
+	</div>
 </template>
 
 <script>
 export default {
-
+	data(){
+		return {}
+	}
 }
 </script>
 
