@@ -11,7 +11,7 @@
 					<i :class="active=='discover'?'icon-active':''"></i>
 				</div>
 			</div>
-			<router-link to="/my">
+			<router-link to="/user">
 				<div class="myimg">
 					<img src="../../public/images/user.jpg" alt="">
 				</div>

@@ -239,7 +239,7 @@ export default {
     border-radius: 2rem !important;
     position: relative;
     margin: 2.4rem 3.5rem;
-    overflow: none;
+    overflow: visible !important;
   }
   .mint-button-icon{
     position: absolute;
