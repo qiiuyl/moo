@@ -11,7 +11,7 @@
 <div id="app">
  
 </div>
-<script>
+// <script>123465
 var vm=new Vue({
 	el:"#app",
 	data:{
