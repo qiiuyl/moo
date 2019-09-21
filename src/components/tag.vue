@@ -1,12 +1,12 @@
 <template>
 <div>
-	<router-link to="/" class="my-small list-tag" :class="place?'place':''">#标签1</router-link>
+	<router-link to="/" class="my-small list-tag" :class="place?'place':''">{{tagName}}</router-link>
 </div>
 </template>
 
 <script>
 export default {
-  props:['place']
+  props:['place','tagName']
 }
 </script>
 

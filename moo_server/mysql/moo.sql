@@ -105,7 +105,7 @@ CREATE TABLE user(
   u_follow            VARCHAR(200),                     #用户关注(存用户id，再去用户表寻找)
   u_fans              VARCHAR(200),                     #用户粉丝数(存用户id，再去用户表寻找)
   u_CollectionSong    VARCHAR(200),                     #用户收藏的歌曲(存歌曲id,再去歌曲表找)
-  u_collectionSinger  VARCHAR(200),                     #用户收藏的艺人(存歌手id,再去歌手表找)
+  u_collectionSinger  VARCHAR(180),                     #用户收藏的艺人(存歌手id,再去歌手表找)
   u_collectionAlbum   VARCHAR(200),                     #用户收藏的专辑(存专辑id,再去专辑表找)
   u_mylist            VARCHAR(200),                     #用户自己建立的歌单表(存歌单id,去歌单表找) 
   u_collectionList    VARCHAR(200),                     #用户收藏的歌单表(存歌单id,去歌单表找)

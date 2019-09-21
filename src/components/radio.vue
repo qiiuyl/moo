@@ -1,13 +1,13 @@
 <template>
   <div class="radio inner-border">
     <div class="img-group">
-      <img src="images/taoze.jpg" alt/>
+      <img :src="list[0].s_img" alt/>
       <div class="big-img">
         <div class="radio-date">{{`${month}/${radioDate}`}}</div>
         <div class="mask"></div>
-        <img src="images/jielun.jpg" alt />
+        <img :src="list[1].s_img" alt />
       </div>
-      <img src="images/jj.jpg" alt class="right-img"/>    
+      <img :src="list[2].s_img" alt class="right-img"/>    
     </div>
     <div class="radio-info" @click="playMusic">
       <div class="info-title">
@@ -27,10 +27,21 @@ export default {
     return {
       radioDate: "",
       month: "",
-      is_play:true
+      is_play:true,
+      list:[
+        {s_img:''},
+        {s_img:''},
+        {s_img:''}
+      ]
     };
   },
   methods: {
+    getlist(){
+      this.axios.get("/Recommend").then(result=>{
+        this.list=result.data.slice(0,3);
+        // console.log(this.list)
+      });
+    },
     getDate() {//获取时间函数
       var time = new Date();
       this.radioDate = time.getDate();
@@ -43,6 +54,7 @@ export default {
   },
   created() {
     this.getDate();
+    this.getlist();
     // console.log(this.radioDate);
     // console.log(this.month);
   }
