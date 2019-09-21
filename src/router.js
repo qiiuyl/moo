@@ -4,6 +4,7 @@ import index from "./views/index"
 import palyListDetail from "./components/palyListDetail";
 import videoDetail from "./components/videoDetail";
 import user from "./components/user";
+import setData from "./components/setData";
 Vue.use(Router);
 
 export default new Router({
@@ -12,6 +13,7 @@ export default new Router({
     { path: "/index", component: index },
     { path: "/palyListDetail", component: palyListDetail },
     { path: "/videoDetail", component: videoDetail },
-    { path: "/user", component: user }
+    { path: "/user", component: user },
+    { path: "/setData", component: setData }
   ]
 });
