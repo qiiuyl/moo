@@ -25,12 +25,12 @@
         <div @click="changeShow"><img src="images/ic_list_operation_batch_white_30dp.png" class="Finished" /></div>
       </div>
     </div>
-    <song-item :is_select="showSelect"></song-item>
-    <song-item :is_select="showSelect"></song-item>
-    <song-item :is_select="showSelect"></song-item>
-    <song-item :is_select="showSelect"></song-item>
-    <song-item :is_select="showSelect"></song-item>
-    <song-item :is_select="showSelect"></song-item>
+    <song-item :is_select="showSelect" :obj="list"></song-item>
+    <song-item :is_select="showSelect" :obj="list"></song-item>
+    <song-item :is_select="showSelect" :obj="list"></song-item>
+    <song-item :is_select="showSelect" :obj="list"></song-item>
+    <song-item :is_select="showSelect" :obj="list"></song-item>
+    <song-item :is_select="showSelect" :obj="list"></song-item>
   </div>
 </template>
 <script>
@@ -38,7 +38,14 @@ import songItem from './songItem'
 export default {
   data(){
     return {
-      showSelect:false
+      showSelect:false,
+      list:{s_id: 1
+      ,s_img: "http://176.122.14.69:8080/songimgs/01.jpg"
+      ,s_name: "青花瓷"
+      ,s_singerID: 1
+      ,s_status: 1
+      ,s_video: "http://176.122.14.69:8080/青花瓷/青花瓷.mp3"
+      ,singer_name: "周杰伦"}
     }
   },
   methods:{

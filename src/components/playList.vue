@@ -1,16 +1,16 @@
 <template>
   <div class="play-list inner-border">
-    <router-link class="list-header" to="/">
+    <router-link class="list-header" to="/playList_one">
       <span class="my-title">MOO Playlist_歌单</span>
       <img src="images/ic_round_arrow_back_ios_white_24px.png" alt />
     </router-link>
     <div class="lists">
       <div class="first-item">
-        <div class="list-item">
+        <router-link class="list-item" to="/playDetail">
           <img :src="list[0].l_img" alt class="listimg" />
           <tag :place="true" :tagName="list[0].t_name"></tag>
           <icon></icon>
-        </div>
+        </router-link>
         <div class="first-info">
           <img src="images/ic_bk_text_20_plus_detail.png" alt />
           <span>{{list[0].l_describe}}</span>

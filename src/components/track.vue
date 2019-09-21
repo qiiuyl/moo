@@ -1,6 +1,6 @@
 <template>
   <div class="track inner-border">
-    <router-link class="list-header" to="/">
+    <router-link class="list-header" to="/mooTrack">
       <span class="my-title">MOO Track_新歌</span>
       <img src="images/ic_round_arrow_back_ios_white_24px.png" alt />
     </router-link>
@@ -20,7 +20,7 @@ export default {
     get_list(){
       this.axios.get("/newsong").then(result=>{
         this.list=result.data.slice(0,5);
-        // console.log(this.list)
+        console.log(this.list)
       })
     }
   },
