@@ -1,20 +1,18 @@
 <template>
   <div class="video-item">
     <div class="video-top">
-      <img src="images\video.jpg" alt />
+      <img :src="obj.v_img" alt />
       <router-link class="mask" to="/">
         <!-- <img src="images/ic_round_drop_down_24dp_white.png" alt=""> -->
       </router-link>
-      <tag :place="true"></tag>
+      <tag :place="true" :tagName="obj.t_name"></tag>
       <div class="video-time">
         <span>03:04</span>
         <img src="images/ic_video_list_icon_white_24dp.png" alt />
       </div>
     </div>
-    <span
-      class="video-title"
-    >我多想每天早上醒来，就看到你和阳光。然后你会揉着我的头发说，宝贝起床吧，我做了早餐。我多想和你一起逛街走累时，你说，宝贝我背你。其实，即使这些你通通都不做，只要你在我身边，我就已经足够。只是，我总是忘了，你已经离开。</span>
-    <span class="video-subtitle">宝贝起床吧，我做了早餐。我多想和你一起逛街走累时</span>
+    <span class="video-title" v-text="obj.v_name"></span>
+    <span class="video-subtitle" v-text="obj.v_describe"></span>
   </div>
 </template>
 
@@ -23,7 +21,8 @@ import tag from "./tag";
 export default {
   components: {
     tag
-  }
+  },
+  props:["obj"]
 };
 </script>
 

@@ -1,6 +1,6 @@
 <template>
 	<div class="album inner-border">
-		<router-link class="list-header" to="/">
+		<router-link class="list-header" to="/album_one">
       <span class="my-title">MOO Album_专辑</span>
       <img src="images/ic_round_arrow_back_ios_white_24px.png" alt />
     </router-link>

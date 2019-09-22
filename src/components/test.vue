@@ -15,7 +15,7 @@
 var vm=new Vue({
 	el:"#app",
 	data:{
-		
+		time:12345
 	}
 })
 </script>

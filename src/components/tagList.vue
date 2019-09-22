@@ -1,6 +1,6 @@
 <template>
 	<div class="tag-list inner-border">
-		 <router-link class="list-header" to="/">
+		 <router-link class="list-header" to="/tagpage">
       <span class="my-title">MOO Tag_探索标签</span>
       <img src="images/ic_round_arrow_back_ios_white_24px.png" alt />
     </router-link>

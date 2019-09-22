@@ -1,6 +1,8 @@
 <template>
   <div class="inner-border">
     <!-- yellow小按钮 -->
+    <back-header></back-header>
+    <div class="top-fill"></div>
     <div class="disflex">
       <div>
         <mt-button>
@@ -10,22 +12,22 @@
       </div>
       <!-- 完成按钮 点开 -->
       <div class="distwo">
-        <img src="images/ic_list_operation_more_white_30dp.png" class="Finished" @click="open"/>
+        <img src="images/ic_list_operation_more_white_30dp.png" class="Finished" @click="open" />
       </div>
     </div>
-    <song-item></song-item>
-    <song-item></song-item>
-    <song-item></song-item>
-    <song-item></song-item>
-    <song-item></song-item>
-    <song-item></song-item>
-    <song-item></song-item>
+    <song-item :obj="list"></song-item>
+    <song-item :obj="list"></song-item>
+    <song-item :obj="list"></song-item>
+    <song-item :obj="list"></song-item>
+    <song-item :obj="list"></song-item>
+    <song-item :obj="list"></song-item>
+    <song-item :obj="list"></song-item>
     <div class="more-list" ref="list">
       <div class="more-box" ref="box">
         <div class="box-top">
           <!-- 交叉按钮 -->
           <div class="close" ref="close">
-            <img src="images/hwpush_ic_cancel.png" alt @click="close"/>
+            <img src="images/hwpush_ic_cancel.png" alt @click="close" />
           </div>
         </div>
         <ul class="more-ul">
@@ -48,9 +50,21 @@
 </template>
 <script>
 import songItem from "./songItem";
+import backHeader from './back_header' 
 export default {
+  data(){
+    return {
+      list:{s_id: 1
+      ,s_img: "http://176.122.14.69:8080/songimgs/01.jpg"
+      ,s_name: "青花瓷"
+      ,s_singerID: 1
+      ,s_status: 1
+      ,s_video: "http://176.122.14.69:8080/青花瓷/青花瓷.mp3"
+      ,singer_name: "周杰伦"}
+    }
+  },
   components: {
-    songItem
+    songItem,backHeader
   },
   methods: {
     close() {
@@ -106,7 +120,7 @@ span {
 }
 .close img {
   width: 2rem;
-  margin-right:1.37rem;
+  margin-right: 1.37rem;
 }
 .more-ul {
   text-align: left;
@@ -127,13 +141,13 @@ span {
   height: 100%;
   left: 0;
   top: 0;
-  display:none;
+  display: none;
   align-items: flex-end;
 }
-.more-box{
-  background-color:#1a1a1a;
+.more-box {
+  background-color: #1a1a1a;
   width: 100%;
-  transition:height 0.5s linear;
-  overflow:hidden;
+  transition: height 0.5s linear;
+  overflow: hidden;
 }
 </style>

@@ -46,11 +46,11 @@
         <span>相关歌曲</span>
         <img src="images/ic_round_arrow_back_ios_white_24px.png" alt />
       </router-link>
-      <song-item></song-item>
-      <song-item></song-item>
-      <song-item></song-item>
-      <song-item></song-item>
-      <song-item></song-item>
+      <song-item :obj="list"></song-item>
+      <song-item :obj="list"></song-item>
+      <song-item :obj="list"></song-item>
+      <song-item :obj="list"></song-item>
+      <song-item :obj="list"></song-item>
     </div>
     <div class="content-box inner-border">
       <router-link to="/" class="title">
@@ -74,6 +74,18 @@ import backHeader from "../components/back_header";
 import songItem from "../components/songItem";
 import albumSinger from "../components/albumSinger";
 export default {
+  data(){
+    return {
+       list:{s_id: 1
+      ,s_img: "http://176.122.14.69:8080/songimgs/01.jpg"
+      ,s_name: "青花瓷"
+      ,s_singerID: 1
+      ,s_status: 1
+      ,s_video: "http://176.122.14.69:8080/青花瓷/青花瓷.mp3"
+      ,singer_name: "周杰伦"}
+    }
+    
+  },
   components: {
     backHeader,
     songItem,

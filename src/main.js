@@ -8,7 +8,7 @@ import axios from "axios"//配置axios
 Vue.config.productionTip = false
 import "mint-ui/lib/style.css";//引入mintui样式 
 // 配置axios默认基础路径
-axios.defaults.baseURL = "http://176.122.14.69:8080";
+axios.defaults.baseURL = "http://192.168.1.104:5050";
 // 注册mintUI
 Vue.use(mintUI);
 // 注册axios

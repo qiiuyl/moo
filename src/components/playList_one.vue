@@ -1,13 +1,7 @@
 <template>
   <div class="inner-border">
-    <mt-header title="">
-      <router-link to="/" slot="left">
-        <img src="images/ic_round_arrow_back_ios_white_24px.png" alt="">
-        <mt-button></mt-button>
-        <mt-button></mt-button>
-      </router-link>
-        <mt-button icon="" slot="right"></mt-button>
-    </mt-header>
+    <back-header :bgcolor="true"></back-header>
+    <div class="top-fill"></div>
     <play-list></play-list>
     <play-list></play-list>
     <play-list></play-list>
@@ -16,8 +10,9 @@
 </template>
 <script>
 import playList from "../components/playList";
+import backHeader from "../components/back_header";
 export default {
-  components:{playList}
+  components:{playList,backHeader}
 }
 </script>
 <style scoped>

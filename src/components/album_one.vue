@@ -1,20 +1,18 @@
 <template>
   <div class="inner-border">
-    <mt-header title="">
-      <router-link to="/" slot="left">
-        <mt-button icon="back"></mt-button>
-      </router-link>
-    <mt-button icon="" slot="right"></mt-button>
-    </mt-header>
+      <back-header :bgcolor="true"></back-header>
+      <div class="top-fill"></div>
       <album></album>
       <album></album>
   </div>
 </template>
 <script>
 import album from "./album";
+import backHeader from "./back_header";
 export default {
   components:{
-    "album":album
+    "album":album,
+    backHeader
   }
 }
 </script>

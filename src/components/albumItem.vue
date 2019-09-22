@@ -1,11 +1,11 @@
 <template>
 	<div class="album-item">
 		<div class="album-img">
-			<img src="images\jielun.jpg" alt="" class="main-img">
+			<img :src="obj.l_img" alt="" class="main-img">
 			<img src="images\album_vinyl_full.png" alt="" class="bg-img">
 		</div>
 		<div class="album-info">
-			<span class="album-name">我想要的(I,Me,Mine)</span>
+			<span class="album-name" v-text="obj.l_title">我想要的(I,Me,Mine)</span>
 			<span class="album-author">家家</span>
 			<tag :place="false"></tag>
 		</div>
@@ -17,7 +17,8 @@ import tag from "./tag";
 export default {
 	components:{
 		tag
-	}
+	},
+	props:["obj"]
 }
 </script>
 
