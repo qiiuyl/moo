@@ -61,7 +61,7 @@ export default {
   height: 100%;
   background: #8c8c8c;
 }
-.songlist .album-item ..album-info .album-author{
+.songlist .album-item .album-info .album-author{
   color: #fff !important;
   opacity: 1;
   background: red;
