@@ -1,18 +1,28 @@
 <template>
   <div class="inner-border">
-    <back-header :bgcolor="true"></back-header>
+    <back-header :backcolor="true" :title="'MOO新歌'"></back-header>
     <div class="top-fill"></div>
-    <play-list></play-list>
-    <play-list></play-list>
-    <play-list></play-list>
-    <play-list></play-list>
+    <play-list :one="true"></play-list>
+    <play-list :one="true"></play-list>
   </div>
 </template>
 <script>
 import playList from "../components/playList";
-import backHeader from "../components/back_header";
 export default {
-  components:{playList,backHeader}
+  data(){
+    return {
+      list:[]
+    }
+  },
+  methods:{
+    get_list(){
+      this.axios.get("/playlist").then(result=>{
+        this.list=result.data;
+        console.log(this.list);
+      })
+    }
+  },
+  components:{playList}
 }
 </script>
 <style scoped>

@@ -27,7 +27,7 @@
       </mt-tab-container-item>
       <mt-tab-container-item id="discover">
 				<!-- discover面板组件 -->
-				<search :place="true"></search>
+				<!-- <search :place="true"></search> -->
 				<div class="search-fill"></div>
 				<carousel></carousel>
 				<radio></radio>

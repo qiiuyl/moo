@@ -96,7 +96,8 @@ export default {
       }, 100);
     }
   },
-  created() {}
+  created() {
+  }
 };
 </script>
 

@@ -6,8 +6,8 @@
 		</div>
 		<div class="album-info">
 			<span class="album-name" v-text="obj.l_title">我想要的(I,Me,Mine)</span>
-			<span class="album-author">家家</span>
-			<tag :place="false"></tag>
+			<span class="album-author" v-text="obj.l_describe"></span>
+			<tag :place="false" :tagName="obj.t_name"></tag>
 		</div>
 	</div>
 </template>
@@ -15,6 +15,10 @@
 <script>
 import tag from "./tag";
 export default {
+	data(){
+		return {
+		}
+	},
 	components:{
 		tag
 	},
@@ -25,6 +29,7 @@ export default {
 <style scoped>
 .album-author{
 	margin: 0.5rem 0;
+	font-size: 0.8rem;
 }
 .album-info{
 	display: flex;
@@ -52,8 +57,5 @@ export default {
 .album-name{
 	font-size: 1rem;
 }
-.album-author{
-	font-size: 0.8rem;
-	color: #999;
-}
+
 </style>

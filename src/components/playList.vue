@@ -1,6 +1,7 @@
 <template>
   <div class="play-list inner-border">
-    <router-link class="list-header" to="/playList_one">
+    <span class="list-header" v-show="one" v-text="time"></span>
+    <router-link class="list-header" to="/playList_one" v-show="!one">
       <span class="my-title">MOO Playlist_歌单</span>
       <img src="images/ic_round_arrow_back_ios_white_24px.png" alt />
     </router-link>
@@ -42,6 +43,7 @@ import icon from "./musicIcon";
 export default {
   data(){
     return {
+      time:'',
       list:[
         {l_img:''},{l_img:''},{l_img:''}
       ]
@@ -51,13 +53,14 @@ export default {
     get_list(){
       this.axios.get("/playlist").then(result=>{
         this.list=result.data;
-        // console.log(this.list);
+        this.time=this.list[0].l_time.slice(0,10)
       })
     }
   },
   components:{
     tag,icon
   },
+  props:['one'],
   created(){
     this.get_list();
   }
@@ -117,7 +120,10 @@ export default {
   margin-top: 0.3rem;
 }
 
-
+span.list-header{
+  font-size: 1.2rem;
+  padding:1rem 0;
+}
 .list-header {
   padding: 0.5rem 0;
   display: flex;
@@ -129,6 +135,6 @@ export default {
   height: 2rem;
 }
 .play-list {
-  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 </style>

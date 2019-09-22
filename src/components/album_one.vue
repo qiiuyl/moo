@@ -1,6 +1,6 @@
 <template>
   <div class="inner-border">
-      <back-header :bgcolor="true"></back-header>
+      <back-header :bcolor="true"></back-header>
       <div class="top-fill"></div>
       <album></album>
       <album></album>
@@ -8,11 +8,9 @@
 </template>
 <script>
 import album from "./album";
-import backHeader from "./back_header";
 export default {
   components:{
-    "album":album,
-    backHeader
+    "album":album
   }
 }
 </script>

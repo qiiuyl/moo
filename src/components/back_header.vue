@@ -1,6 +1,6 @@
 <template>
-  <div :class="bgcolor?'bg':'bgno'" class="back-header">
-    <div class="title">123465</div>
+  <div :class="backcolor?'bg':'bgno'" class="back-header">
+    <div class="title">{{title}}</div>
 		<div class="icon">
 			<div @click="back" class="left">
       <img src="images/ic_round_arrow_back_ios_white_24px.png" alt class="backicon" />
@@ -23,11 +23,14 @@ export default {
   data() {
     return {};
   },
-  props: ["bgcolor", "title", "more", "share"],
+  props: ["backcolor","title","more","share"],
   methods: {
     back() {
       this.$router.go(-1);
     }
+  },
+  created(){
+   
   }
 };
 </script>

@@ -43,6 +43,11 @@ img{
 	margin: 0.5rem 0;
 	line-height: 1.25rem;
 }
+/* carousel样式 */
+.songlist a.place{
+  left: 0.5rem;
+  bottom: 2rem;
+}
 /* 自定义字体 */
 @font-face{
 	font-family: "PaulGroteskSoft";

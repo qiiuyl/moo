@@ -20,7 +20,6 @@ export default {
     getlist(){
       this.axios.get("/hotVideo").then(result=>{
         this.list=result.data.splice(0,3);
-        console.log(this.list);
       });
     }
   },

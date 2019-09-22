@@ -20,7 +20,6 @@ export default {
     get_list(){
       this.axios.get("/newsong").then(result=>{
         this.list=result.data.slice(0,5);
-        console.log(this.list)
       })
     }
   },

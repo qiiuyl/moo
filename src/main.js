@@ -4,7 +4,10 @@ import router from './router'
 import store from './store'
 import mintUI from 'mint-ui'//配置mintui
 import axios from "axios"//配置axios
+import backHeader from "./components/back_header"
 
+// 注册全局组件顶部返回
+Vue.component("backHeader", backHeader);
 Vue.config.productionTip = false
 import "mint-ui/lib/style.css";//引入mintui样式 
 // 配置axios默认基础路径
