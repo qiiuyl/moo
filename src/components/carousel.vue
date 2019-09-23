@@ -48,7 +48,7 @@ export default {
   methods: {
     getlist() {
       this.axios.get("/carousel").then(result => {
-        console.log(result.data);
+        // console.log(result.data);
         for (var elem of result.data[0]) {
           elem.type = "album";
         }

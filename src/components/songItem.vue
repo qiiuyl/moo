@@ -77,6 +77,12 @@
 </template>
 
 <script>
+function bodyScorll(e) 
+   {
+      e.preventDefault();   //取消事件默认动作
+      e.stopPropagation();  //不再派发事件
+    }
+
 export default {
   data() {
     return {};
@@ -84,12 +90,14 @@ export default {
   props: ["is_select",'obj'],
   methods: {
     close() {
+      document.removeEventListener("touchmove",bodyScorll,{ passive: false });
       this.$refs.box.style.height = 0;
       setTimeout(() => {
         this.$refs.list.style.display = "none";
       }, 200);
     },
     open() {
+      document.addEventListener("touchmove",bodyScorll,{ passive: false });
       this.$refs.list.style.display = "flex";
       setTimeout(() => {
         this.$refs.box.style.height = "auto";

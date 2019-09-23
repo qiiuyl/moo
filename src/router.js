@@ -10,6 +10,7 @@ import album_one from "./components/album_one";
 import singer from "./components/singer";
 import user from "./components/user";
 import header from "./components/back_header";
+import test from "./components/test";
 
 Vue.use(Router);
 
@@ -27,5 +28,6 @@ export default new Router({
     { path: "/singer", component: singer },
     { path: "/user", component: user },
     { path: "/header", component: header },
+    { path: "/test", component: test },
   ]
 });

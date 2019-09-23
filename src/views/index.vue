@@ -18,17 +18,23 @@
 			</router-link>
 		</div>
 		<!-- 上方脱离了文本流加个占位标签 -->
+		<!-- <h1>{{active}}</h1> -->
 		<div class="top-fill" v-if="active=='discover'"></div>
     <!-- 面板组件 -->
-    <mt-tab-container v-model="active" swipeable>
-      <mt-tab-container-item id="play">
+    <van-tabs v-model="active" swipeable animated :line-height="0">
+      <van-tab name="play">
 				<!-- play面板组件 -->
-				<play></play>
-      </mt-tab-container-item>
-      <mt-tab-container-item id="discover">
+				<van-swipe :show-indicators="false" :initial-swipe="0" vertical :style="`height:${height}px`">
+      	<van-swipe-item><div class="box"><play></play></div></van-swipe-item>
+      	<van-swipe-item><div class="box"><play></play></div></van-swipe-item>
+      	<van-swipe-item><div class="box"><play></play></div></van-swipe-item>
+      	<van-swipe-item><div class="box"><play></play></div></van-swipe-item>
+    		</van-swipe>
+      </van-tab>
+      <van-tab name="discover">
 				<!-- discover面板组件 -->
-				<!-- <search :place="true"></search> -->
-				<div class="search-fill"></div>
+				<search></search>
+				<!-- <div class="search-fill"></div> -->
 				<carousel></carousel>
 				<radio></radio>
 				<play-list></play-list>
@@ -37,8 +43,8 @@
 				<moo-video></moo-video>
 				<tag-list></tag-list>
 				<!-- <h4>车是买那不能大苏打</h4> -->
-      </mt-tab-container-item>
-    </mt-tab-container>
+      </van-tab>
+    </van-tabs>
   </div>
 </template>
 <script>
@@ -54,15 +60,27 @@ import play from "../components/play";
 export default {
   data() {
     return {
+			height:0,
       active: "discover"
     };
   },
 	components:{
 		search,carousel,radio,playList,mooTrack,album,mooVideo,tagList,play
+	},
+	created(){
+		this.height=window.innerHeight;
 	}
 };
 </script>
 <style scoped>
+.box{
+	width: 100%;
+	height: 100%;
+}
+.van-tabs--line >>> .van-tabs__wrap{
+	height: 0;
+}
+
 .search-fill{
     width: 100%;
     height:3rem;

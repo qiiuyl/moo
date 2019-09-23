@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view></router-view>
     <div class="player">
       <img src="images/vinyl_disk_60dp.png" alt="" class="rotate-img" :class="rotatestyle">
       <div class="player-info">
@@ -37,7 +37,7 @@ export default {
       bool=this.rotatestyle.runing;
       this.rotatestyle.runing=this.rotatestyle.paused;
       this.rotatestyle.paused=bool;
-      console.log(!this.rotatestyle.rotate)
+      // console.log(!this.rotatestyle.rotate)
     }
   }
 }

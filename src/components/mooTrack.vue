@@ -1,6 +1,6 @@
 <template>
   <div class="inner-border">
-    <back-header :bgcolor="true" :title="'歌单列表'"></back-header>
+    <back-header :title="'歌单列表'"></back-header>
     <!-- 头部背景图 -->
     <div class="bg-image">
       <div>
@@ -9,25 +9,11 @@
       </div>
     </div>
     <!-- 按钮+图片 -->
-    <div class="disflex">
-      <div class="left">
-        <button class="playbtn">
-          <img src="images/radio_play.png" class="btn" />
-        </button>
-        <span v-text="list.length"></span>
-      </div>
-      <!-- 完成图片 -->
-      <div class="distwo">
-        <div @click="changeShow">
-          <img src="images/ic_list_operation_batch_white_30dp.png" class="Finished" />
-        </div>
-      </div>
-    </div>
-    <song-item v-for="(elem,i) of list" :key="i" :is_select="showSelect" :obj="elem"></song-item>
+    <song-list :songlist="list"></song-list>
   </div>
 </template>
 <script>
-import songItem from "./songItem";
+import songList from "./mooTrack_one";
 export default {
   data() {
     return {
@@ -39,6 +25,7 @@ export default {
   methods: {
     get_time() {
       this.time = new Date().toLocaleDateString();
+      
     },
     get_list() {
       this.axios.get("/newsong").then(result => {
@@ -50,7 +37,7 @@ export default {
     }
   },
   components: {
-    songItem
+    songList
   },
   created() {
     this.get_list();

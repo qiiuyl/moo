@@ -19,12 +19,12 @@ export default {
   data() {
     return {
       obj: {
-        img: "http://192.168.1.104:5050/carousel/timg01.jpg",
+        img: "http://176.122.14.69:8080/carousel/timg01.jpg",
         l_describe: "达哥最爱",
-        l_img: "http://192.168.1.104:5050/list/timg08.jpg",
+        l_img: "http://176.122.14.69:8080/list/timg08.jpg",
         l_tag: "1",
         l_title: "另类的歌单标题求推荐",
-        l_video: "http://192.168.1.104:5050/list/x.mp4",
+        l_video: "http://176.122.14.69:8080/list/x.mp4",
         lid: 1,
         listID: 1,
         t_id: 1,

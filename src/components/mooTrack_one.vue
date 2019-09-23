@@ -1,91 +1,91 @@
 <template>
   <div class="inner-border">
-    <!-- yellow小按钮 -->
-    <back-header></back-header>
-    <div class="top-fill"></div>
+    <!-- 按钮+图片 -->
     <div class="disflex">
-      <div>
-        <mt-button>
+      <div class="left">
+        <button class="playbtn">
           <img src="images/radio_play.png" class="btn" />
-        </mt-button>
-        <span>20</span>
+        </button>
+        <span v-text="songlist.length"></span>
       </div>
-      <!-- 完成按钮 点开 -->
+      <!-- 完成图片 -->
       <div class="distwo">
-        <img src="images/ic_list_operation_more_white_30dp.png" class="Finished" @click="open" />
-      </div>
-    </div>
-    <song-item :obj="list"></song-item>
-    <song-item :obj="list"></song-item>
-    <song-item :obj="list"></song-item>
-    <song-item :obj="list"></song-item>
-    <song-item :obj="list"></song-item>
-    <song-item :obj="list"></song-item>
-    <song-item :obj="list"></song-item>
-    <div class="more-list" ref="list">
-      <div class="more-box" ref="box">
-        <div class="box-top">
-          <!-- 交叉按钮 -->
-          <div class="close" ref="close">
-            <img src="images/hwpush_ic_cancel.png" alt @click="close" />
-          </div>
+        <div @click="changeShow">
+          <img src="images/ic_list_operation_batch_white_30dp.png" class="Finished" />
         </div>
-        <ul class="more-ul">
-          <li class="more-li">
-            <router-link to="/">
-              <img src="images/ic_list_operation_batch_white_30dp.png" alt />
-              <span>批量操作</span>
-            </router-link>
-          </li>
-          <li class="more-li">
-            <router-link to="/">
-              <img src="images\icon_paixu.png" alt />
-              <span>排序</span>
-            </router-link>
-          </li>
-        </ul>
       </div>
     </div>
+    <song-item v-for="(elem,i) of songlist" :key="i" :is_select="showSelect" :obj="elem"></song-item>
   </div>
 </template>
 <script>
 import songItem from "./songItem";
-import backHeader from './back_header' 
 export default {
-  data(){
+  data() {
     return {
-      list:{s_id: 1
-      ,s_img: "http://176.122.14.69:8080/songimgs/01.jpg"
-      ,s_name: "青花瓷"
-      ,s_singerID: 1
-      ,s_status: 1
-      ,s_video: "http://176.122.14.69:8080/青花瓷/青花瓷.mp3"
-      ,singer_name: "周杰伦"}
+      showSelect: false,
+      time: ""
+    };
+  },
+  props:[
+    'songlist'
+  ],
+  methods: {
+    get_time() {
+      this.time = new Date().toLocaleDateString();
+      console.log(this.songlist)
+    },
+    changeShow() {
+      this.showSelect = !this.showSelect;
     }
   },
   components: {
-    songItem,backHeader
+    songItem
   },
-  methods: {
-    close() {
-      this.$refs.box.style.height="0rem";
-      setTimeout(()=>{
-        this.$refs.list.style.display="none";
-      },500);
-    },
-    open(){
-      this.$refs.list.style.display="flex";
-      this.$refs.box.style.height="10.5rem";
-    }
+  created() {
+    this.get_time();
   }
 };
 </script>
 <style scoped>
-.mint-button--default {
-  background-color: #fff133;
-  width: 3.75rem;
-  height: 1.875rem;
-  border-radius: 1.25rem;
+.playbtn{
+  border: 0;
+  outline: 0;
+  background:#ffe133;
+  border-radius: 1rem;
+  padding:0 1rem;
+}
+.playbtn img{
+  width: 1.5rem;
+}
+.bg-image {
+  margin: 0 -3%;
+}
+.bg-image div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  height: 15rem;
+  background: url("../../public/images/detail_moo_track_header_bg.png")
+    no-repeat;
+  background-size: cover;
+}
+
+.bg-image h3,h5 {
+  margin:0 0 0.5rem 1rem; 
+}
+.bg-image h3 {
+  font-family: "PaulGroteskSoft";
+}
+/* .mint-header {
+  background: transparent;
+  padding: 0px;
+}
+.router-link-active img {
+  width: 2rem;
+  transform: rotateY(180deg);
+  position: relative;
 }
 .mint-button-text .btn {
   transform: rotateY(360deg);
@@ -93,6 +93,12 @@ export default {
   position: relative;
   left: 0px;
 }
+.mint-button--default {
+  background-color: #fff133;
+  width: 3.75rem;
+  height: 1.875rem;
+  border-radius: 1.25rem;
+} */
 span {
   margin-left: 0.625rem;
   font-size: 1rem;
@@ -101,8 +107,7 @@ span {
 }
 .Finished {
   width: 1.8rem;
-  margin-right: 0.6rem;
-  /* transform: rotateY(360deg); */
+  transform: rotateY(360deg);
 }
 .disflex {
   align-items: center;
@@ -111,43 +116,11 @@ span {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
 }
+.left{
+  display: flex;
+  align-items: center;
+}
 .distwo {
   display: flex;
-}
-.close {
-  text-align: right;
-  width: 100%;
-}
-.close img {
-  width: 2rem;
-  margin-right: 1.37rem;
-}
-.more-ul {
-  text-align: left;
-}
-.more-ul .more-li img {
-  width: 2rem;
-  padding: 0.2rem 0;
-  margin-left: 1.25rem;
-}
-.router-link-active span {
-  position: relative;
-  top: -0.8rem;
-}
-.more-list {
-  position: absolute;
-  background: rgba(0, 0, 0, 0.5);
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  display: none;
-  align-items: flex-end;
-}
-.more-box {
-  background-color: #1a1a1a;
-  width: 100%;
-  transition: height 0.5s linear;
-  overflow: hidden;
 }
 </style>

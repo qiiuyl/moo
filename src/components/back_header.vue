@@ -59,6 +59,8 @@ export default {
   background-color: transparent;
   z-index: 5;
   height: 3.7rem;
+  left: 0;
+  top: 0;
 }
 .backicon{
 	transform: rotate(180deg)
