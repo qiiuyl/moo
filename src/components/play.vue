@@ -48,12 +48,11 @@
       </div>
       <div id="songWord" :style="Height"></div>
     </div>
-
     <div id="bg" :style="Height" ref="bg">
       <div id="title" @click="showWord">
         <h2>青花瓷-周杰伦(Jay)</h2>
       </div>
-      <div id="song-play">
+      <div id="song-play" @click="playsong">
         <img v-show="true" src="../../public/images/ic_round_drop_down_24dp_white.png" alt />
       </div>
       <div id="tag">
@@ -120,7 +119,7 @@
 #bg-songword {
   width: 100%;
   background: none;
-  position: absolute;
+  position: fixed;
   display: none;
   z-index: 100;
 }
@@ -129,6 +128,7 @@
   width: 100%;
   position: absolute;
   background: rgba(0, 0, 0, 0.5);
+  /* z-index: 11; */
 }
 #Word-content,
 #more-content {
@@ -371,28 +371,21 @@ export default {
   },
   methods: {
     playsong(){
-      var audio=document.getElementById("audio");
-      if(audio.paused){
-        audio.play();
-      }else{
-        audio.pause();
-      }
-    },
-    getAudio(){
-      var audio=document.getElementById("audio");
-      audio.src='http://176.122.14.69:8080/%E6%97%A0%E8%B5%96/%E6%97%A0%E8%B5%96.mp3';
-      // audio.autoplay=true;
+      this.$emit("play");
     },
     getH() {
       var h = window.innerHeight;
       this.Height.height = h + "px";
     },
     showWord() {
+      this.$emit("show",true);
       this.$refs.bg.style.filter = "blur(0.7rem)";
       this.$refs.bgSongWord.style.display = "block";
       this.wordStatus=true;
+      e.stopPropagation();
     },
     closeWord() {
+      this.$emit("show",false);
       if(this.wordStatus==true){
         this.$refs.bg.style.filter = "";
         this.$refs.bgSongWord.style.display = "none";
@@ -401,6 +394,8 @@ export default {
       }
     },
     showdetail() {
+      // console.log(123);
+      this.$emit("show",true);
       this.detailStatus=true;
       var h = window.innerHeight;
       var i = h*0.1;
@@ -411,13 +406,14 @@ export default {
           this.$refs.bgSongWord.style.display = "block";
           var bgSongword=document.getElementById("bg-songword");
           bgSongword.style.transform ='translateY(' + h + 'px)';
-          console.log(h);
+          // console.log(h);
         }else if(h<=0){
           window.clearInterval(time);
         }
       },10)
     },
     closedetail() {
+      this.$emit("show",false);
       var h = window.innerHeight;
       var i = h*0.1;
       var height = 0;
@@ -428,7 +424,7 @@ export default {
           this.$refs.bgSongWord.style.display = "block";
           var bgSongword=document.getElementById("bg-songword");
           bgSongword.style.transform ='translateY(' + height + 'px)';
-          console.log(h);
+          // console.log(h);
         }else if(height>=h){
           var bgSongword=document.getElementById("bg-songword");
           bgSongword.style.transform ='none';
@@ -443,7 +439,6 @@ export default {
     this.getH();
   },
   mounted(){
-    this.getAudio();
   }
 };
 </script>

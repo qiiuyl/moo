@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import App from './App.vue'
 import router from './router'
-import store from './store'
+// import store from './store'
 import mintUI from 'mint-ui'//配置mintui
 import axios from "axios"//配置axios
 import backHeader from "./components/back_header"
@@ -25,11 +25,23 @@ Vue.use(mintUI);
 // 注册axios
 Vue.prototype.axios=axios;
 
-var store=new Vuex.Store({
-  state:{},
-  mutations:{},
-  getters:{}
-})
+var store = new Vuex.Store({
+  state: {
+    play: false
+  },
+  mutations: {
+    changeplay(state,st) {
+      state.play = st;
+      // console.log(123);
+      // console.log(state.play);
+    }
+  },
+  getters: {
+    getPlay(state) {
+      return state.play;
+    }
+  }
+});
 
 new Vue({
   router,

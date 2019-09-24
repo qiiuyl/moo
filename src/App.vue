@@ -1,34 +1,57 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <router-view @play="play"></router-view>
     <div class="player">
       <img src="images/vinyl_disk_60dp.png" alt="" class="rotate-img" :class="rotatestyle">
       <div class="player-info">
-        <span class="time" ref="time">04:05</span>
+        <span class="time" ref="time">{{`0${Math.floor(playTime/60)}:${playTime%60>10?playTime%60:'0'+playTime%60}`}}</span>
         <button class="player-btn" @click="changeplay">
           <img src="images/ic_notification_play.png" alt="" ref="btn">
         </button>
       </div>
     </div>
+    <audio id="audio" src="music/无赖.mp3"></audio>
+    <!-- <h1>{{play}}</h1> -->
+    <!-- <h1>{{$store.getters.getPlay}}</h1> -->
+    <!-- <input type="text" v-model="play" id="test" style="background:#000"> -->
   </div>
 </template>
 <script>
 export default {
   data(){
     return {
+      // play:'',
       rotatestyle:{
         runing:false,
         paused:true
-      }
+      },
+      playTime:0
     }
   },
   methods:{
-    changeplay(){
+    play(){
+      this.changeplay();
+    },
+
+    // playsong(){
+    //   // console.log("触发change事件");
+    //    var audio=document.getElementById("audio");
+    //    var status=e.target.getAttribute("data-play");
+    //    if(status){
+    //      audio.play();
+    //    }else{
+    //      audio.pause();
+    //    }
+    //  },
+  changeplay(){
+    var audio=document.getElementById("audio");
       if(this.rotatestyle.runing){
+        audio.pause();
         this.$refs.btn.src='images/ic_notification_play.png';
         this.$refs.btn.style.opacity=0.5;
         this.$refs.time.style.opacity=0.5;
       }else{
+        audio.play();
         this.$refs.btn.src='images/ic_notification_pause.png';
         this.$refs.btn.style.opacity=1;
         this.$refs.time.style.opacity=1;
@@ -38,7 +61,18 @@ export default {
       this.rotatestyle.runing=this.rotatestyle.paused;
       this.rotatestyle.paused=bool;
       // console.log(!this.rotatestyle.rotate)
+      var totalTime=audio.duration;
+      setInterval(() => {
+        this.playTime=parseInt(audio.currentTime);
+      }, 1000);
     }
+  },
+  created(){ 
+    },
+  watch:{
+
+  },
+  mounted(){
   }
 }
 </script>
@@ -93,6 +127,7 @@ export default {
     left: 1rem;
     z-index: 100;
     display: flex;
+    /* display: none; */
     align-items: center
   }
 </style>
