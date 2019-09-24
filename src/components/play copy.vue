@@ -1,7 +1,6 @@
 <template>
     <div id="bg-blur" :style="Height">
-      <audio id="audio"></audio>
-      <button @click="playsong" class="playbtn">播放歌曲</button>
+
     <div id="bg" :style="Height">
       <div id="title">
         <h2>Because of you(因为你)-Kelly Clarkson(凯丽.克拉克森)</h2>
@@ -52,12 +51,6 @@
     </div>
 </template>
 <style scoped>
-.playbtn{
-  position: fixed;
-  z-index: 1000;
-  left: 50%;
-  top: 50%;
-}
 #bg-blur{
   background:yellow;
   width:100%;
@@ -175,19 +168,6 @@ export default {
     };
   },
   methods: {
-    playsong(){
-      var audio=document.getElementById("audio");
-      if(audio.paused){
-        audio.play();
-      }else{
-        audio.pause();
-      }
-    },
-    getAudio(){
-      var audio=document.getElementById("audio");
-      audio.src='http://176.122.14.69:8080/%E6%97%A0%E8%B5%96/%E6%97%A0%E8%B5%96.mp3';
-      // audio.autoplay=true;
-    },
     getH() {
       var h = window.innerHeight;
       this.Height.height = h + "px";
@@ -195,9 +175,6 @@ export default {
   },
   created() {
     this.getH();
-  },
-  mounted(){
-    this.getAudio();
   }
 };
 </script>
