@@ -10,7 +10,7 @@
         </button>
       </div>
     </div>
-    <audio id="audio" src="music/无赖.mp3"></audio>
+    <audio id="audio" src="http://192.168.1.104:5050/%E6%97%A0%E8%B5%96/%E6%97%A0%E8%B5%96.MP3"></audio>
     <!-- <h1>{{play}}</h1> -->
     <!-- <h1>{{$store.getters.getPlay}}</h1> -->
     <!-- <input type="text" v-model="play" id="test" style="background:#000"> -->
@@ -45,13 +45,26 @@ export default {
     //  },
   changeplay(){
     var audio=document.getElementById("audio");
+    // 播放时间的定时函数
+    var totalTime=audio.duration;
+      // var time=setInterval(() => {
+      //   this.playTime=parseInt(audio.currentTime);
+      //   console.log(123);
+      // }, 1000);
+      // 判断是否在播放
       if(this.rotatestyle.runing){
         audio.pause();
+        // clearInterval(timer);
+        this.$store.commit("changeplay",false);
         this.$refs.btn.src='images/ic_notification_play.png';
         this.$refs.btn.style.opacity=0.5;
         this.$refs.time.style.opacity=0.5;
       }else{
         audio.play();
+        this.$store.commit("changeplay",true);
+        var timer=setInterval(() => {
+        this.playTime=parseInt(audio.currentTime);
+      }, 1000);      
         this.$refs.btn.src='images/ic_notification_pause.png';
         this.$refs.btn.style.opacity=1;
         this.$refs.time.style.opacity=1;
@@ -61,10 +74,11 @@ export default {
       this.rotatestyle.runing=this.rotatestyle.paused;
       this.rotatestyle.paused=bool;
       // console.log(!this.rotatestyle.rotate)
-      var totalTime=audio.duration;
-      setInterval(() => {
-        this.playTime=parseInt(audio.currentTime);
-      }, 1000);
+      // var totalTime=audio.duration;
+      // setInterval(() => {
+      //   this.playTime=parseInt(audio.currentTime);
+      //   console.log(123);
+      // }, 1000);
     }
   },
   created(){ 

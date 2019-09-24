@@ -53,7 +53,7 @@
         <h2>青花瓷-周杰伦(Jay)</h2>
       </div>
       <div id="song-play" @click="playsong">
-        <img v-show="true" src="../../public/images/ic_round_drop_down_24dp_white.png" alt />
+        <img v-show="!$store.getters.getPlay" src="../../public/images/ic_round_drop_down_24dp_white.png" alt />
       </div>
       <div id="tag">
         <ul>
@@ -307,6 +307,7 @@ h2 {
 #bottom #bottom_top p {
   display: flex;
   align-items: center;
+  
 }
 #bottom #bottom_top h2 {
   width: 80%;
@@ -332,6 +333,7 @@ h2 {
 <script>
 import tag from "./tag";
 import mooTrackOne from "./mooTrack_one";
+import { get } from 'http';
 export default {
   components: { tag, mooTrackOne },
   data() {

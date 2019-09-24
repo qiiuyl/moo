@@ -1,18 +1,14 @@
 <template>
-  <div class="carousel inner-border" :style="`height:${carouselHeight}px`">
-    <mt-swipe :auto="3000">
-      <mt-swipe-item v-for="(elem,i) of list" :key="i">
+  <div class="carousel inner-border">
+    <van-swipe :auto="140000">
+      <van-swipe-item v-for="(elem,i) of list" :key="i" :style="`height:${carouselHeight}px`">
         <div class="album" v-if="elem.type=='album'">
           <album-item :obj="elem"></album-item>
         </div>
-        <div
-          class="songlist"
-          v-else-if="elem.type=='songlist'"
-          :style="`background-image:url(${elem.img})`"
-        >
+        <div class="songlist" v-else-if="elem.type=='songlist'" :style="`background-image:url(${elem.img})`">
           <div class="info">
             <tag :tagName="elem.t_name"></tag>
-            <span v-text="elem.a_name"></span>
+            <span v-text="elem.l_title"></span>
           </div>
         </div>
         <div class="video" v-else :style="`background-image:url(${elem.v_img})`">
@@ -24,9 +20,9 @@
             <span v-text="elem.v_name"></span>
           </div>
         </div>
-        <!-- <div class="video">123465</div> -->
-      </mt-swipe-item>
-    </mt-swipe>
+        <!-- <div class="test" v-else><h1>123456</h1></div> -->
+      </van-swipe-item>
+    </van-swipe>
   </div>
 </template>
 
@@ -41,17 +37,16 @@ export default {
   data() {
     return {
       carouselHeight: 0,
-      list:6
+      list:[]
     };
   },
   methods: {
     getlist(){
       this.axios.get("/carousel").then(result => {
-        console.log(result.data);
         for (var elem of result.data[0]) {
-          elem.type = "album";
+          elem.type = "songlist";
         }
-        result.data[1].type = "songlist";
+        result.data[1].type = "album";
         for (var elem of result.data[2]) {
           elem.type = "video";
         }
@@ -61,9 +56,15 @@ export default {
           result.data[1],
           result.data[2]
         );
-        for (var elem of order) {
-          this.list.push(arr[elem]);
-        }
+        this.list=arr;
+        console.log(this.list);
+        // for(var i=0;i<order.length;i++){
+        //   this.list[i]=arr[order[i]];
+        // }
+        // console.log(this.list);
+        // for (var elem of order) {
+        //   this.list.push(arr[elem]);
+        // }
       })
     },
     getWidth() {
@@ -79,6 +80,11 @@ export default {
 </script>
 
 <style scoped>
+.test{
+  width: 100%;
+  height: 160px;
+  background: #f00;
+}
 .video {
   position: relative;
   width: 100%;
@@ -140,7 +146,7 @@ export default {
   width: 100%;
   height: 100%;
 }
-.mint-swipe-item {
+.van-swipe-item {
   overflow: hidden;
   border-radius: 1.5rem;
 }
