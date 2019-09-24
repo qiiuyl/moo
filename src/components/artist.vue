@@ -4,8 +4,12 @@
       <span>2</span>
     </div>
     <div class="aritst-border">
-      <img src="images/01artist.jpg" alt=""><h4>Tizzy T</h4>
-      <!-- <img src="images/02artist.jpg" alt=""><h4>周杰伦</h4> -->
+      <img src="images/01artist.jpg" alt="">
+      <h4>Tizzy T</h4>
+    </div>
+    <div class="aritst-img">
+      <img src="images/02artist.jpg" alt="">
+      <h4>周杰伦</h4>
     </div>
   </div>
 </template>
@@ -17,22 +21,30 @@ export default {
 </script>
 
 <style scoped>
+  .artist-span{
+    margin-top:1.25rem;
+    margin-bottom:1.5rem;
+  }
   span{
-    font-size:2rem;
+    font-size:1.06rem;
     font-family: "PaulGroteskSoft";
     color: #d3d3d3;
   }
-  .aritst-boredr{
-    display: flex;
+  .aritst-border{
+    display:flex;
+    margin-bottom:1.25rem;
   }
   h4{
-    margin-top:0rem;
-    margin-bottom:0rem;
+    position: relative;
+    left:2.18rem;
   }
-  .aritst-border img{
-    width:50px;
+  img{
+    width:16%;
     border-radius: 50%;
-    display:flex;
     vertical-align: middle;
+  }
+  .aritst-img{
+    display:flex;
+    margin-bottom:1.25rem;
   }
 </style>

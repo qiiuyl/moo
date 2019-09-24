@@ -1,13 +1,13 @@
 <template>
 	<div class="album-item">
 		<div class="album-img">
-			<img src="images\jielun.jpg" alt="" class="main-img">
+			<img :src="obj.l_img" alt="" class="main-img">
 			<img src="images\album_vinyl_full.png" alt="" class="bg-img">
 		</div>
 		<div class="album-info">
-			<span class="album-name">我想要的(I,Me,Mine)</span>
-			<span class="album-author">家家</span>
-			<tag :place="false"></tag>
+			<span class="album-name" v-text="obj.l_title">我想要的(I,Me,Mine)</span>
+			<span class="album-author" v-text="obj.l_describe"></span>
+			<tag :place="false" :tagName="obj.t_name"></tag>
 		</div>
 	</div>
 </template>
@@ -15,15 +15,21 @@
 <script>
 import tag from "./tag";
 export default {
+	data(){
+		return {
+		}
+	},
 	components:{
 		tag
-	}
+	},
+	props:["obj"]
 }
 </script>
 
 <style scoped>
 .album-author{
 	margin: 0.5rem 0;
+	font-size: 0.8rem;
 }
 .album-info{
 	display: flex;
@@ -51,8 +57,5 @@ export default {
 .album-name{
 	font-size: 1rem;
 }
-.album-author{
-	font-size: 0.8rem;
-	color: #999;
-}
+
 </style>

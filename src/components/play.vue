@@ -100,6 +100,12 @@
   </div>
 </template>
 <style scoped>
+#bg-blur{
+  background:yellow;
+  width:100%;
+  height: 100%;
+  z-index:80;
+}
 #bg {
   width: 100%;
   background: url("../../public/images/bg.jpeg") no-repeat;
