@@ -1,14 +1,8 @@
 <template>
   <div class="video-detail">
-    <mt-header fixed class="inner-border">
-      <router-link to="/" slot="left">
-        <mt-button>
-          <img src="images/ic_round_arrow_back_ios_white_24px.png" alt class="backicon" />
-        </mt-button>
-      </router-link>
-    </mt-header>
-		<div class="fill"></div>
-		<video src="video/x.mp4" controls></video>
+    <back-header :title="'视频标题'" :bgcolor="true"></back-header>
+    <div class="fill"></div>
+    <video src="video/x.mp4" controls></video>
     <div class="list-info inner-border">
       <div class="title">
         <span>音乐让贫穷的我精神富足够起来</span>
@@ -36,7 +30,37 @@
         <tag></tag>
       </div>
     </div>
+    <div class="content-box inner-border">
+      <span class="title">关联歌曲</span>
+      <song-item></song-item>
+    </div>
+    <div class="content-box inner-border">
+      <span class="title">接下来播放</span>
+      <!-- <song-item></song-item> -->
+      <ul class="next-play">
+        <li>
+          <img src="images/video.jpg" alt />
+          <span class="play-title">小威的第一部视频第一部视频第一部视频第一部视频部视频第一部视频第一部视频第一部视频</span>
+          <span class="play-subtitle">某丽的第一部视频第一部视频第一部视频第一部视频</span>
+        </li>
+        <li>
+          <img src="images/video.jpg" alt />
+          <span class="play-title">小威的第一部视频第一部视频第一部视频第一部视频部视频第一部视频第一部视频第一部视频</span>
+          <span class="play-subtitle">某丽的第一部视频第一部视频第一部视频第一部视频</span>
+        </li>
+        <li>
+          <img src="images/video.jpg" alt />
+          <span class="play-title">小威的第一部视频第一部视频第一部视频第一部视频部视频第一部视频第一部视频第一部视频</span>
+          <span class="play-subtitle">某丽的第一部视频第一部视频第一部视频第一部视频</span>
+        </li>
+      </ul>
+    </div>
+    <div class="content-box inner-border">
+      <span class="title">评论</span>
+      <comment :open="show_comment" :position="show_comment"></comment>
+    </div>
   </div>
+  
 </template>
 
 <script>
@@ -44,43 +68,52 @@ import search from "./search";
 import musicIcon from "./musicIcon";
 import tag from "./tag";
 import songItem from "./songItem";
+import comment from "./comment";
+import backHeader from "./back_header";
 export default {
   data() {
     return {
-      width:0,
-      show_select:false,
-      select_list:[]
+      width: 0,
+      show_select: false,
+      select_list: [],
+      show_comment:false
     };
   },
   components: {
     search,
     musicIcon,
     tag,
-    songItem
+    songItem,
+    comment,
+    backHeader
   },
   methods: {
-  change_select(){
-    this.show_select=!this.show_select;
-    // console.log(this.select_list)
-  },
+    open(){
+      this.show_comment=!this.show_comment;
+      // console.log(this.show_comment);
+    },
+    change_select() {
+      this.show_select = !this.show_select;
+      // console.log(this.select_list)
+    },
     S_width() {
-     var swipe = document.getElementById("swipe");
-    //  swipe.children
+      var swipe = document.getElementById("swipe");
+      //  swipe.children
       // console.log(swipe.children);
-      var swipeChild=swipe.children;
-      var sum=0;
-      for(var elem of swipeChild){
-        sum+=elem.offsetWidth;
+      var swipeChild = swipe.children;
+      var sum = 0;
+      for (var elem of swipeChild) {
+        sum += elem.offsetWidth;
         // console.log(elem.offsetWidth)
       }
       //  this.width = (swipe.offsetWidth / window.innerWidth) * 100;
       //  console.log(swipe.offsetWidth);
-       var sumWidth=sum+16*(swipeChild.length-1);
+      var sumWidth = sum + 16 * (swipeChild.length - 1);
       //  console.log(sumWidth);
-       this.width=sumWidth/window.innerWidth*100;
+      this.width = (sumWidth / window.innerWidth) * 100;
       // console.log(this.width);
       // console.log(sumWidth);
-     },
+    },
     swipeX(w) {
       //创建一个函数swipeX传入一个参数w  是你这个列表长度的百分比  就比如500% 传入500
       var swipe = document.getElementById("swipe"); //获取id为swipe的元素
@@ -112,8 +145,7 @@ export default {
       }); //绑定触控结束事件  手指离开屏幕时触发
     }
   },
-  created() {
-    },
+  created() {},
   mounted() {
     this.S_width();
     this.swipeX(this.width);
@@ -122,20 +154,57 @@ export default {
 </script>
 
 <style scoped>
-.video-detail video{
-	/* margin:0 -3%; */
-	width: 100%;
+.play-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin:0.5rem 0;
+  font-size: 0.9rem;
 }
-.fill{
-	width: 100%;
-	height: 3.7rem;
+.play-subtitle {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+.next-play {
+  display: flex;
+  flex-wrap: wrap;
+}
+.next-play li {
+  margin-bottom: 1rem;
+  width: 49%;
+}
+.next-play li img {
+  width: 100%;
+}
+.next-play li:nth-child(2n){
+  margin-left:2%;
+}
+.content-box {
+  margin-top: 2rem;
+}
+.content-box .title {
+  opacity: 0.7;
+  margin-bottom: 1rem;
+}
+.video-detail video {
+  /* margin:0 -3%; */
+  width: 100%;
+}
+.fill {
+  width: 100%;
+  height: 3.7rem;
 }
 .tag-box {
   width: 100%;
   overflow: hidden;
 }
 .tags {
-   /* width: 500%; */
+  /* width: 500%; */
   margin-top: 0.8rem;
   display: flex;
 }
@@ -191,8 +260,8 @@ export default {
   width: 90%;
 }
 .list-info .title img {
-	width: 8%;
-	opacity: 0.8;
-	margin-left:0.5rem; 
+  width: 8%;
+  opacity: 0.8;
+  margin-left: 0.5rem;
 }
 </style>
