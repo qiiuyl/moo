@@ -176,7 +176,7 @@ export default {
   }
   .user-collect div :nth-child(2){
     position: absolute;
-    top:22%;
+    top:23%;
     left:45%;
     z-index: 1;
   }
@@ -230,7 +230,7 @@ export default {
     width: 2rem;
     height: 2rem;
     position: relative;
-    top:-9%;
+    top:-19%;
   }
   .mint-button{
     width: 16rem;
