@@ -3,7 +3,7 @@
     <div class="user">
       <!-- 头部 -->
       <div class="user-header">
-        <img class="header01" src="images/ic_round_arrow_back_ios_white_24px.png" alt="">
+        <img class="header01" src="images/ic_round_arrow_back_ios_white_24px.png" alt="" @click="back">
         <div>我的音乐</div>
         <img class="header02" src="images/set.png" alt="">
       </div>
@@ -74,7 +74,11 @@
 </template>
 <script>
 export default {
-  
+  methods:{
+    back(){
+      this.$router.go(-1);
+    }
+  }
 }
 </script>
 <style>

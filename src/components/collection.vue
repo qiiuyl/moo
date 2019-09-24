@@ -17,20 +17,24 @@
           <mooTrack></mooTrack>
         </mt-tab-container-item>
         <mt-tab-container-item id="2">
-          <h1>1234</h1>
+          <artist></artist>
         </mt-tab-container-item>
         <mt-tab-container-item id="3">
-          <h1>12345</h1>
+          <artistone></artistone>
         </mt-tab-container-item>
       </mt-tab-container>
     </div>
   </div>
 </template>
 <script>
+import artist_one from "./artist_one";
+import artist from "./artist";
 import mooTrack_one from "./mooTrack_one";
 export default {
   components:{
-      "mooTrack":mooTrack_one
+      "mooTrack":mooTrack_one,
+      "artist":artist,
+      "artistone":artist_one
   },
   data(){
     return {
