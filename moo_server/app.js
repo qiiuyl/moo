@@ -104,3 +104,40 @@ server.get("/newsong",(req,res)=>{
     res.send(result)
   })
 })
+
+// 歌手的接口
+server.get("/singer",(req,res)=>{
+  var sql="SELECT singer_id,singer_name,singer_intr,singer_fans,singer_video,singer_affect,singer_beaffected,likeSinger FROM singer WHERE singer_id=1"
+  pool.query(sql,(err,result)=>{
+    var arr1=result[0]["singer_affect"];
+    arr1=arr1.split("/");
+    var arr2=result[0]["singer_beaffected"];
+    arr2=arr2.split("/");
+    var arr3=result[0]["likeSinger"];
+    arr3=arr3.split("/");
+    var arr4=[];
+    arr4.concat(arr1,arr2,arr3)
+    res.send(arr4);
+    // var sql2="SELECT singer_id,singer_img,singer_name FROM singer WHERE singer_id IN ()"
+  })
+})
+
+//热度视频的接口
+server.get("/hotVideo",(req,res)=>{
+  var sql="SELECT v_id,v_name,v_describe,v_tag,v_img,v_Subheading FROM hotVideo"
+  pool.query(sql,(err,result)=>{
+    if(err) throw err;
+    var obj=result;
+    for(var i=0,arr=[];i<result.length;i++){
+      arr.push(parseInt(result[i]["v_tag"]));
+    }
+    var sql1="SELECT t_id,t_name FROM tag WHERE t_id IN (?,?,?,?,?,?,?)"
+    pool.query(sql1,arr,(err,result)=>{
+      if(err) throw err;
+      for(var n=0,obj1=[];n<result.length;n++){
+        obj1.push({...obj[n],...result[n]})
+      }
+      res.send(obj1)
+    })
+  })
+})
