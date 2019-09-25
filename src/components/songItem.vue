@@ -4,10 +4,10 @@
       <input type="checkbox"/>
     </div>
     <div class="song-info">
-      <img src="images/jielun.jpg" alt />
+      <img :src="obj.s_img" alt />
       <div class="info">
-        <h4>范特西</h4>
-        <span class="my-small">周杰伦</span>
+        <h4>{{obj.s_name}}</h4>
+        <span class="my-small">{{obj.singer_name}}</span>
       </div>
     </div>
     <div class="more" @click="open" v-show="!is_select">
@@ -16,7 +16,7 @@
     <div class="more-list" ref="list">
       <div class="more-box" ref="box">
         <div class="box-top">
-          <span class="song-name">小苹果</span>
+          <span class="song-name">{{obj.s_name}}</span>
           <div class="close" @click="close">
             <img src="images/hwpush_ic_cancel.png" alt />
           </div>
@@ -55,7 +55,7 @@
           <li class="more-li">
             <router-link to="/">
               <img src="images\ic_bk_artist_white_30dp.png" alt />
-              <span>歌手</span>
+              <span>歌手:{{obj.singer_name}}</span>
             </router-link>
           </li>
           <li class="more-li">
@@ -77,29 +77,35 @@
 </template>
 
 <script>
+function bodyScorll(e) 
+   {
+      e.preventDefault();   //取消事件默认动作
+      e.stopPropagation();  //不再派发事件
+    }
+
 export default {
   data() {
     return {};
   },
-  props: ["is_select"],
+  props: ["is_select",'obj'],
   methods: {
     close() {
+      document.removeEventListener("touchmove",bodyScorll,{ passive: false });
       this.$refs.box.style.height = 0;
       setTimeout(() => {
         this.$refs.list.style.display = "none";
       }, 200);
     },
     open() {
+      document.addEventListener("touchmove",bodyScorll,{ passive: false });
       this.$refs.list.style.display = "flex";
-      // window.event.returnValue="false";
-      // oDiv.addEventListener("DOMMouseScroll",function(ev){ev.preventDefault();} , false);
       setTimeout(() => {
         this.$refs.box.style.height = "auto";
-        // window.preventDefault();
       }, 100);
     }
   },
-  created() {}
+  created() {
+  }
 };
 </script>
 

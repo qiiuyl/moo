@@ -1,81 +1,82 @@
 <template>
   <div class="inner-border">
-    <mt-header title="MOO Track 新歌" style="font-size:16px;" fixed>
-      <router-link to="/" slot="left">
-        <img src="images/ic_round_arrow_back_ios_white_24px.png" alt />
-      </router-link>
-      <mt-button icon slot="right"></mt-button>
-    </mt-header>
+    <back-header :title="'歌单列表'"></back-header>
     <!-- 头部背景图 -->
-      <div class="bg-image">
-        <div></div>
-        <h5>09/18</h5>
-        <h4>MOO Track 新歌</h4>
-      </div>
-    <!-- 按钮+图片 -->
-    <div class="disflex">
+    <div class="bg-image">
       <div>
-        <mt-button>
-          <img src="images/radio_play.png" class="btn" />
-        </mt-button>
-        <span>20</span>
-      </div>
-      <!-- 完成图片 -->
-      <div class="distwo">
-        <div @click="changeShow"><img src="images/ic_list_operation_batch_white_30dp.png" class="Finished" /></div>
+        <h5>{{time}}</h5>
+        <h3>MOO Track 新歌</h3>
       </div>
     </div>
-    <song-item :is_select="showSelect"></song-item>
-    <song-item :is_select="showSelect"></song-item>
-    <song-item :is_select="showSelect"></song-item>
-    <song-item :is_select="showSelect"></song-item>
-    <song-item :is_select="showSelect"></song-item>
-    <song-item :is_select="showSelect"></song-item>
+    <!-- 按钮+图片 -->
+    <song-list :songlist="list"></song-list>
   </div>
 </template>
 <script>
-import songItem from './songItem'
+import songList from "./mooTrack_one";
 export default {
-  data(){
+  data() {
     return {
-      showSelect:false
+      showSelect: false,
+      list: [],
+      time: ""
+    };
+  },
+  methods: {
+    get_time() {
+      this.time = new Date().toLocaleDateString();
+      
+    },
+    get_list() {
+      this.axios.get("/newsong").then(result => {
+        this.list = result.data;
+      });
+    },
+    changeShow() {
+      this.showSelect = !this.showSelect;
     }
   },
-  methods:{
-    changeShow(){
-      this.showSelect=!this.showSelect;
-    }
+  components: {
+    songList
   },
-  components:{
-    songItem
+  created() {
+    this.get_list();
+    this.get_time();
   }
 };
 </script>
 <style scoped>
-.bg-image{
+.playbtn{
+  border: 0;
+  outline: 0;
+  background:#ffe133;
+  border-radius: 1rem;
+  padding:0 1rem;
+}
+.playbtn img{
+  width: 1.5rem;
+}
+.bg-image {
   margin: 0 -3%;
 }
-.bg-image div{
-  height:15rem;
-  background:url("../../public/images/detail_moo_track_header_bg.png") no-repeat;
-  background-size:contain;
-  position: relative;
+.bg-image div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  height: 15rem;
+  background: url("../../public/images/detail_moo_track_header_bg.png")
+    no-repeat;
+  background-size: cover;
 }
-.bg-image h5,h4{
-  margin-top:0px;
-  margin-bottom: 0px;
-  margin-left:0.62rem;
+
+.bg-image h3,h5 {
+  margin:0 0 0.5rem 1rem; 
 }
-.bg-image h5{
-  position:absolute;
-  top:10.31rem;
-}
-.bg-image h4{
+.bg-image h3 {
   font-family: "PaulGroteskSoft";
-  position:absolute;
-  top:11.56rem;
 }
-.mint-header {
+/* .mint-header {
   background: transparent;
   padding: 0px;
 }
@@ -95,7 +96,7 @@ export default {
   width: 3.75rem;
   height: 1.875rem;
   border-radius: 1.25rem;
-}
+} */
 span {
   margin-left: 0.625rem;
   font-size: 1rem;
@@ -103,15 +104,19 @@ span {
   color: #d3d3d3;
 }
 .Finished {
-  width:1.8rem;
+  width: 1.8rem;
   transform: rotateY(360deg);
 }
 .disflex {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  margin-top:1.25rem;
-  margin-bottom:1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.left{
+  display: flex;
+  align-items: center;
 }
 .distwo {
   display: flex;

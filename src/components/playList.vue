@@ -1,36 +1,37 @@
 <template>
   <div class="play-list inner-border">
-    <router-link class="list-header" to="/">
+    <span class="list-header" v-show="one" v-text="time"></span>
+    <router-link class="list-header" to="/playList_one" v-show="!one">
       <span class="my-title">MOO Playlist_歌单</span>
       <img src="images/ic_round_arrow_back_ios_white_24px.png" alt />
     </router-link>
     <div class="lists">
       <div class="first-item">
-        <div class="list-item">
-          <img src="images/playlist.jpg" alt class="listimg" />
-          <tag :place="true"></tag>
+        <router-link class="list-item" to="/playDetail">
+          <img :src="list[0].l_img" alt class="listimg" />
+          <tag :place="true" :tagName="list[0].t_name"></tag>
           <icon></icon>
-        </div>
+        </router-link>
         <div class="first-info">
           <img src="images/ic_bk_text_20_plus_detail.png" alt />
-          <span>我也不知道写些什么就随便vi按撒犯得上广泛受到</span>
+          <span>{{list[0].l_describe}}</span>
         </div>
       </div>
       <div class="list-item">
         <div class="list-top">
-          <img src="images/playlist.jpg" alt class="listimg" />
-          <tag :place="true"></tag>
+          <img :src="list[1].l_img" alt class="listimg" />
+          <tag :place="true" :tagName="list[1].t_name"></tag>
           <icon></icon>          
         </div>
-        <span class="list-info">刘耀威的第一张专辑</span>
+        <span class="list-info">{{list[1].l_title}}</span>
       </div>
        <div class="list-item">
         <div class="list-top">
-          <img src="images/playlist.jpg" alt class="listimg" />
-          <tag :place="true"></tag>
+          <img :src="list[2].l_img" alt class="listimg" />
+          <tag :place="true" :tagName="list[2].t_name"></tag>
           <icon></icon>          
         </div>
-        <span class="list-info">邱玉丽的第一张专辑</span>
+        <span class="list-info">{{list[2].l_title}}</span>
       </div>
     </div>
   </div>
@@ -40,8 +41,28 @@
 import tag from "./tag";
 import icon from "./musicIcon";
 export default {
+  data(){
+    return {
+      time:'',
+      list:[
+        {l_img:''},{l_img:''},{l_img:''}
+      ]
+    }
+  },
+  methods:{
+    get_list(){
+      this.axios.get("/playlist").then(result=>{
+        this.list=result.data;
+        this.time=this.list[0].l_time.slice(0,10)
+      })
+    }
+  },
   components:{
     tag,icon
+  },
+  props:['one'],
+  created(){
+    this.get_list();
   }
 };
 </script>
@@ -99,7 +120,10 @@ export default {
   margin-top: 0.3rem;
 }
 
-
+span.list-header{
+  font-size: 1.2rem;
+  padding:1rem 0;
+}
 .list-header {
   padding: 0.5rem 0;
   display: flex;
@@ -111,6 +135,6 @@ export default {
   height: 2rem;
 }
 .play-list {
-  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 </style>

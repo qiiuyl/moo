@@ -3,7 +3,7 @@
     <div class="user">
       <!-- 头部 -->
       <div class="user-header">
-        <img class="header01" src="images/ic_round_arrow_back_ios_white_24px.png" alt="">
+        <img class="header01" src="images/ic_round_arrow_back_ios_white_24px.png" alt="" @click="back">
         <div>我的音乐</div>
         <img class="header02" src="images/set.png" alt="">
       </div>
@@ -74,7 +74,11 @@
 </template>
 <script>
 export default {
-  
+  methods:{
+    back(){
+      this.$router.go(-1);
+    }
+  }
 }
 </script>
 <style>
@@ -176,7 +180,7 @@ export default {
   }
   .user-collect div :nth-child(2){
     position: absolute;
-    top:22%;
+    top:23%;
     left:45%;
     z-index: 1;
   }
@@ -230,7 +234,7 @@ export default {
     width: 2rem;
     height: 2rem;
     position: relative;
-    top:-9%;
+    top:-19%;
   }
   .mint-button{
     width: 16rem;
@@ -239,7 +243,7 @@ export default {
     border-radius: 2rem !important;
     position: relative;
     margin: 2.4rem 3.5rem;
-    overflow: none;
+    overflow: visible !important;
   }
   .mint-button-icon{
     position: absolute;
