@@ -46,7 +46,10 @@ export default {
         for (var elem of result.data[0]) {
           elem.type = "songlist";
         }
-        result.data[1].type = "album";
+        for (var elem of result.data[1]) {
+          elem.type = "album";
+        }
+        // result.data[1].type = "album";
         for (var elem of result.data[2]) {
           elem.type = "video";
         }
@@ -56,15 +59,16 @@ export default {
           result.data[1],
           result.data[2]
         );
-        this.list=arr;
-        console.log(this.list);
+        this.list=[];
+        for (var elem of order) {
+          this.list.push(arr[elem]);
+        }
+        // console.log(this.list);
         // for(var i=0;i<order.length;i++){
         //   this.list[i]=arr[order[i]];
         // }
         // console.log(this.list);
-        // for (var elem of order) {
-        //   this.list.push(arr[elem]);
-        // }
+        
       })
     },
     getWidth() {
@@ -74,7 +78,8 @@ export default {
   created() {
     this.getWidth();
     this.getlist();
-    // console.log(this.carouselHeight);
+    // console.log(this.$refs);
+// console.log(this.carouselHeight);
   }
 };
 </script>

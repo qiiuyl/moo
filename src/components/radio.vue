@@ -1,13 +1,13 @@
 <template>
   <div class="radio inner-border">
     <div class="img-group">
-      <img :src="list[0].s_img" alt/>
+      <img :src="list[0].a_img" alt/>
       <div class="big-img">
         <div class="radio-date">{{`${month}/${radioDate}`}}</div>
         <div class="mask"></div>
-        <img :src="list[1].s_img" alt />
+        <img :src="list[1].a_img" alt />
       </div>
-      <img :src="list[2].s_img" alt class="right-img"/>    
+      <img :src="list[2].a_img" alt class="right-img"/>    
     </div>
     <div class="radio-info" @click="playMusic">
       <div class="info-title">

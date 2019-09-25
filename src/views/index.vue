@@ -25,10 +25,10 @@
       <van-tab name="play">
 				<!-- play面板组件 -->
 				<van-swipe :show-indicators="false" :initial-swipe="0" vertical :style="`height:${height}px`">
-      	<van-swipe-item><play @show="show" @play="play"></play></van-swipe-item>
-      	<van-swipe-item><play @show="show" @play="play"></play></van-swipe-item>
-      	<van-swipe-item><play @show="show" @play="play"></play></van-swipe-item>
-      	<van-swipe-item><play @show="show" @play="play"></play></van-swipe-item>
+      	<van-swipe-item><play @show="show"></play></van-swipe-item>
+      	<van-swipe-item><play @show="show"></play></van-swipe-item>
+      	<van-swipe-item><play @show="show"></play></van-swipe-item>
+      	<van-swipe-item><play @show="show"></play></van-swipe-item>
     		</van-swipe>
       </van-tab>
       <van-tab name="discover">
@@ -67,10 +67,6 @@ export default {
     };
 	},
 	methods:{
-		play(){
-			console.log("传到了index面板");
-			this.$emit("play");
-		},
 		show(a){//a为布尔值若a为ture则将z-index置为0  a为false则将z-index置为1
 			// console.log(123);
 			if(a){
@@ -85,7 +81,7 @@ export default {
 	},
 	created(){
 		this.height=window.innerHeight;
-		// console.log(this.$store.getters.getPlay)
+		// console.dir(this.$store.getters.getSingObj);
 	}
 };
 </script>

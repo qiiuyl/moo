@@ -373,7 +373,14 @@ export default {
   },
   methods: {
     playsong(){
-      this.$emit("play");
+      var audio = this.$store.getters.getSingObj;
+      if(this.$store.getters.getPlay){
+        this.$store.commit("setPlay",false);
+        audio.pause();
+      }else{
+        this.$store.commit("setPlay",true);
+        audio.play();
+      }
     },
     getH() {
       var h = window.innerHeight;

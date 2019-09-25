@@ -3,8 +3,8 @@
     <div class="song-checked" v-show="is_select" :style="is_select?'width:10%':'width:0'">
       <input type="checkbox"/>
     </div>
-    <div class="song-info">
-      <img :src="obj.s_img" alt />
+    <div class="song-info" @click="switchSing">
+      <img :src="obj.a_img" alt />
       <div class="info">
         <h4>{{obj.s_name}}</h4>
         <span class="my-small">{{obj.singer_name}}</span>
@@ -89,6 +89,14 @@ export default {
   },
   props: ["is_select",'obj'],
   methods: {
+    switchSing(){
+      var audio = this.$store.getters.getSingObj;
+      this.$store.commit("setSingUrl",this.obj.s_video);
+      this.$store.commit("setPlay",true);
+        setTimeout(() => {
+          audio.play();
+        }, 100);
+    },
     close() {
       document.removeEventListener("touchmove",bodyScorll,{ passive: false });
       this.$refs.box.style.height = 0;
@@ -105,6 +113,7 @@ export default {
     }
   },
   created() {
+    // console.log(this.obj);
   }
 };
 </script>
