@@ -16,7 +16,7 @@ import albumItem from "./albumItem";
 export default {
 	components:{
 		albumItem
-	}
+	},
 }
 </script>
 

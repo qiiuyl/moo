@@ -39,9 +39,9 @@ export default {
     left:2.18rem;
   }
   img{
-    width:16%;
+    width:20%;
     border-radius: 50%;
-    vertical-align: middle;
+    vertical-align: middle;/*属性设置元素的垂直对齐方式*/
   }
   .aritst-img{
     display:flex;
