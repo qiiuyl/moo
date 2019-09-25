@@ -16,6 +16,7 @@
 <script>
 import albumItem from "./albumItem";
 export default {
+
   data() {
     return {
       obj: {

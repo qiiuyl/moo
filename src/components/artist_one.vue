@@ -43,19 +43,19 @@ export default {
     font-size:1.06rem;
     font-family: "PaulGroteskSoft";
     color: #d3d3d3;
-    line-height:30px;
+    line-height:1.87rem;
   }
   .artist-span img{
-    width:32px;
+    width:2rem;
   }
   .t-img{
     display:flex;
   }
   .top-img{
-    width:100px;
+    width:6.25rem;
   }
   .bottom-img{
-    width:14px;
+    width:0.87rem;
   }
   .t-img p{
     margin: 0;
@@ -67,13 +67,24 @@ export default {
     margin-left:2rem;
   }
   .song-checked{
-    margin:10px;
+    margin:0.62rem;
+    display:flex;
+    align-items: center;
   }
   .song-checked input{
     /* display:flex; */
-    width:1.25rem;
-    height:5rem;;
+    width:20px;
+    height:20px;
     background-color: transparent;
     border: 1px solid #c9c9c9;
+    -webkit-appearance: none;
+    border-radius: 50%;
+    outline: none;
   }
+  .song-checked input[type="checkbox"]:checked {
+    background: url("../../public/images/scan_finish_icon.png") no-repeat center
+      center;
+    background-size: cover;
+    border: 0;
+}
 </style>
