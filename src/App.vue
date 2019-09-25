@@ -21,6 +21,7 @@
   </div>
 </template>
 <script>
+import { setTimeout } from 'timers';
 export default {
   data() {
     return {
@@ -33,20 +34,38 @@ export default {
     };
   },
   methods: {
-    play() {
-      setTimeout(() => {
-        this.changeplay();
-      }, 100);
+    palysing(){//播放歌曲函数
+      var audio=document.getElementById("audio");
+      audio.play();
+      this.$store.commit("setPlay", true);
+    },
+    pausesing(){//暂停歌曲函数
+      var audio=document.getElementById("audio");
+      audio.pause();
+      this.$store.commit("setPlay", false);
+    },
+    listSwitch(){//切换下一首歌曲函数
+      var audio=document.getElementById("audio");
+      var arr=this.$store.getters.getPlaylist;
+      var index=this.$store.getters.getPlayindex;
+      if(index<arr.length-1){
+        this.$store.commit("setPlayindex");
+        this.$store.commit("setSingUrl",arr[index]);
+      setTimeout(()=>{
+          this.palysing();
+        },100)
+      }else{
+        this.pausesing();
+        this.playTime=0;
+      }
     },
     changeplay() {
       var audio = this.$store.getters.getSingObj;
       var totalTime = audio.duration;
       if(this.$store.getters.getPlay){
-        this.$store.commit("setPlay", false);
-        audio.pause();
+        this.pausesing();
       }else{
-        this.$store.commit("setPlay", true);
-        audio.play();
+        this.palysing();
       }
     }
   },
@@ -57,9 +76,14 @@ export default {
   mounted() {
     var audio=document.getElementById("audio");
     this.$store.commit("setSingObj", audio);
-    setInterval(() => {
+    var time=setInterval(() => {
       this.playTime = parseInt(audio.currentTime);
-
+      if(audio.ended){
+        var i=this.$store.getters.getPlayindex;
+        var list=this.$store.getters.getPlaylist;
+        this.listSwitch();
+        // console.log("调用一次");
+      }
     }, 1000);
     console.dir(audio);
   }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @touchmove="move" @touchstart="start" @touchend="end">
     <div :style="Height" id="bg-songword" @click="closeWord" ref="bgSongWord">
       <div id="Word-content" :style="Height" v-if="(wordStatus==true)">
         <div id="content-header">
@@ -368,10 +368,50 @@ export default {
       detailStatus:false,
       moreHeight: {
         height: "0px"
-      }
+      },
+      startpx:0,
+      movepx:0
     };
   },
   methods: {
+    palysing(){//播放歌曲函数
+      var audio = this.$store.getters.getSingObj;      
+      audio.play();
+      this.$store.commit("setPlay", true);
+    },
+    pausesing(){//暂停歌曲函数
+      var audio = this.$store.getters.getSingObj;
+      audio.pause();
+      this.$store.commit("setPlay", false);
+    },
+    start(e){
+      this.startpx=e.touches[0].pageY;
+    },
+    move(e){
+      this.movepx=this.startpx-e.touches[0].pageY; 
+    },
+    end(){
+      if(this.movepx>10){
+        this.listSwitch();
+      }
+    },
+    listSwitch(){//切换下一首歌曲函数
+      console.log('触发我这个play.vue的函数');
+      var audio = this.$store.getters.getSingObj;
+      var arr=this.$store.getters.getPlaylist;
+      var index=this.$store.getters.getPlayindex;
+      console.log(index);
+      if(index<arr.length-1){
+        this.$store.commit("setPlayindex");
+        this.$store.commit("setSingUrl",arr[index]);
+      setTimeout(()=>{
+          this.palysing();
+        },100)
+      }else{
+        this.pausesing();
+        // this.playTime=0;
+      }
+    },
     playsong(){
       var audio = this.$store.getters.getSingObj;
       if(this.$store.getters.getPlay){

@@ -19,7 +19,8 @@ Vue.use(Vuex);
 Vue.component("backHeader", backHeader);
 Vue.config.productionTip = false
 // 配置axios默认基础路径
-axios.defaults.baseURL = "http://176.122.14.69:8080";
+// axios.defaults.baseURL = "http://176.122.14.69:8080";
+axios.defaults.baseURL = "http://192.168.1.104:5050";
 // 注册mintUI
 Vue.use(mintUI);
 // 注册axios
@@ -29,11 +30,17 @@ var store = new Vuex.Store({
   state: {
     singobj:{},//audio对象
     play: false,//是否播放
-    singUrl:"http://176.122.14.69:8080/%E6%97%A0%E8%B5%96/%E6%97%A0%E8%B5%96.mp3",//播放的url
-    playlist:[],// 播放列表
+    singUrl:"http://192.168.1.104:5050/4168004877.mp3",//播放的url
+    playlist:['http://192.168.1.104:5050/4168004877.mp3','http://192.168.1.104:5050/戒烟.mp3','http://192.168.1.104:5050/4168004877.mp3'],// 播放列表
     playindex:0// 当前播放的index
   },
   mutations: {
+    setPlaylist(state,arr){
+      state.playlist=arr;
+    },
+    setPlayindex(state){
+      state.playindex+=1;
+    },
     setPlay(state, st) {
       state.play = st;
     },
@@ -46,6 +53,12 @@ var store = new Vuex.Store({
     }
   },
   getters: {
+    getPlaylist(state){
+      return state.playlist;
+    },
+    getPlayindex(state){
+      return state.playindex;
+    },
     getSingObj(state){
       return state.singobj;
     },
