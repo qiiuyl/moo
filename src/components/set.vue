@@ -29,7 +29,7 @@
 </template>
 <script>
 export default {
-  
+  // 没写
 }
 </script>
 <style>
