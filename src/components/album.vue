@@ -4,7 +4,7 @@
       <span class="my-title">MOO Album_专辑</span>
       <img src="images/ic_round_arrow_back_ios_white_24px.png" alt />
     </router-link>
-    <album-item :obj="obj"></album-item>
+    <album-item :obj="list[1]"></album-item>
     <span
       class="first-text"
     >文字，是一个汉语词汇，拼音为wén zì，基本意思是记录思想、交流思想或承载语言的图像或符号。该词出自《史记·秦始皇本纪》：“一法度衡石丈尺，车同轨，书同文字。”</span>

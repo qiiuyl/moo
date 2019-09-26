@@ -1,6 +1,6 @@
 <template>
   <div class="index">
-		<div class="index-header" :class="active=='discover'?'bg':''">
+		<div class="index-header" :class="active=='discover'?'bg':''" ref="indexHeader" v-if="showheader">
 			<div class="navbar-title">
 				<div >
 					<span v-show="active=='play'">PLAY</span>
@@ -25,10 +25,10 @@
       <van-tab name="play">
 				<!-- play面板组件 -->
 				<van-swipe :show-indicators="false" :initial-swipe="0" vertical :style="`height:${height}px`">
-      	<van-swipe-item><div class="box"><play></play></div></van-swipe-item>
-      	<van-swipe-item><div class="box"><play></play></div></van-swipe-item>
-      	<van-swipe-item><div class="box"><play></play></div></van-swipe-item>
-      	<van-swipe-item><div class="box"><play></play></div></van-swipe-item>
+      	<van-swipe-item><play @show="show"></play></van-swipe-item>
+      	<van-swipe-item><play @show="show"></play></van-swipe-item>
+      	<van-swipe-item><play @show="show"></play></van-swipe-item>
+      	<van-swipe-item><play @show="show"></play></van-swipe-item>
     		</van-swipe>
       </van-tab>
       <van-tab name="discover">
@@ -39,9 +39,10 @@
 				<radio></radio>
 				<play-list></play-list>
 				<moo-track></moo-track>
-				<album></album>
+				<!-- <album></album> -->
 				<moo-video></moo-video>
 				<tag-list></tag-list>
+				<!-- <h1>{{$store.getters.getPlay}}</h1> -->
 				<!-- <h4>车是买那不能大苏打</h4> -->
       </van-tab>
     </van-tabs>
@@ -61,14 +62,26 @@ export default {
   data() {
     return {
 			height:0,
-      active: "discover"
+			active: "discover",
+			showheader:true
     };
-  },
+	},
+	methods:{
+		show(a){//a为布尔值若a为ture则将z-index置为0  a为false则将z-index置为1
+			// console.log(123);
+			if(a){
+				this.$refs.indexHeader.style.display="none";
+			}else{
+				this.$refs.indexHeader.style.display="block";
+			}
+		}
+	},
 	components:{
 		search,carousel,radio,playList,mooTrack,album,mooVideo,tagList,play
 	},
 	created(){
 		this.height=window.innerHeight;
+		// console.dir(this.$store.getters.getSingObj);
 	}
 };
 </script>
@@ -112,7 +125,7 @@ export default {
 	 left: 0;
 	 top: 0;
 	 /* border-bottom:2px solid #fff;  */
-	 z-index: 10;
+	 z-index: 1;
  }
  .navbar-title span{
 	 font-size: 1.8rem;

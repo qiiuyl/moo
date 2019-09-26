@@ -4,7 +4,7 @@
       <span class="my-title">MOO Video_视频</span>
       <img src="images/ic_round_arrow_back_ios_white_24px.png" alt />
     </router-link>
-    <video-item v-for="(elem,i) of list" :key="i" :obj="elem"></video-item>
+    <video-item v-for="(elem,i) of list" :key="i" :obj="elem" id="video"></video-item>
   </div>
 </template>
 
@@ -18,6 +18,7 @@ export default {
   },
   methods:{
     getlist(){
+      // console.log(this.$refs.video);
       this.axios.get("/hotVideo").then(result=>{
         this.list=result.data.splice(0,3);
       });

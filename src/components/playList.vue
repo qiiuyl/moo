@@ -1,6 +1,6 @@
 <template>
   <div class="play-list inner-border">
-    <span class="list-header" v-show="one" v-text="time"></span>
+    <span class="list-header" v-show="one">2019/01/02</span>
     <router-link class="list-header" to="/playList_one" v-show="!one">
       <span class="my-title">MOO Playlist_歌单</span>
       <img src="images/ic_round_arrow_back_ios_white_24px.png" alt />
@@ -21,15 +21,15 @@
         <div class="list-top">
           <img :src="list[1].l_img" alt class="listimg" />
           <tag :place="true" :tagName="list[1].t_name"></tag>
-          <icon></icon>          
+          <icon></icon>
         </div>
         <span class="list-info">{{list[1].l_title}}</span>
       </div>
-       <div class="list-item">
+      <div class="list-item">
         <div class="list-top">
           <img :src="list[2].l_img" alt class="listimg" />
           <tag :place="true" :tagName="list[2].t_name"></tag>
-          <icon></icon>          
+          <icon></icon>
         </div>
         <span class="list-info">{{list[2].l_title}}</span>
       </div>
@@ -41,27 +41,27 @@
 import tag from "./tag";
 import icon from "./musicIcon";
 export default {
-  data(){
+  data() {
     return {
-      time:'',
-      list:[
-        {l_img:''},{l_img:''},{l_img:''}
-      ]
+      // time: "",
+      list:[{ l_img: "" }, { l_img: "" },{ l_img: "" }]
     }
   },
-  methods:{
-    get_list(){
-      this.axios.get("/playlist").then(result=>{
-        this.list=result.data;
-        this.time=this.list[0].l_time.slice(0,10)
-      })
+  methods: {
+    get_list() {
+      this.axios.get("/playlist").then(result => {
+        this.list = result.data;
+        // console.log(this.list);
+        // this.time = this.list[0].l_time.slice(0, 10);
+      });
     }
   },
-  components:{
-    tag,icon
+  components: {
+    tag,
+    icon
   },
-  props:['one'],
-  created(){
+  props: ["one"],
+  created() {
     this.get_list();
   }
 };
@@ -111,18 +111,18 @@ export default {
   position: relative;
   display: flex;
 }
-.list-info{
-  overflow-wrap:break-word;
+.list-info {
+  overflow-wrap: break-word;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
-  overflow: hidden; 
+  overflow: hidden;
   margin-top: 0.3rem;
 }
 
-span.list-header{
+span.list-header {
   font-size: 1.2rem;
-  padding:1rem 0;
+  padding: 1rem 0;
 }
 .list-header {
   padding: 0.5rem 0;

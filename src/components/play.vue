@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @touchmove="move" @touchstart="start" @touchend="end">
     <div :style="Height" id="bg-songword" @click="closeWord" ref="bgSongWord">
       <div id="Word-content" :style="Height" v-if="(wordStatus==true)">
         <div id="content-header">
@@ -48,13 +48,12 @@
       </div>
       <div id="songWord" :style="Height"></div>
     </div>
-
     <div id="bg" :style="Height" ref="bg">
       <div id="title" @click="showWord">
         <h2>青花瓷-周杰伦(Jay)</h2>
       </div>
-      <div id="song-play">
-        <img v-show="true" src="../../public/images/ic_round_drop_down_24dp_white.png" alt />
+      <div id="song-play" @click="playsong">
+        <img v-show="!$store.getters.getPlay" src="../../public/images/ic_round_drop_down_24dp_white.png" alt />
       </div>
       <div id="tag">
         <ul>
@@ -100,6 +99,12 @@
   </div>
 </template>
 <style scoped>
+.playbtn{
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  top: 50%;
+}
 #bg-blur{
   background:yellow;
   width:100%;
@@ -114,7 +119,7 @@
 #bg-songword {
   width: 100%;
   background: none;
-  position: absolute;
+  position: fixed;
   display: none;
   z-index: 100;
 }
@@ -123,6 +128,7 @@
   width: 100%;
   position: absolute;
   background: rgba(0, 0, 0, 0.5);
+  /* z-index: 11; */
 }
 #Word-content,
 #more-content {
@@ -301,6 +307,7 @@ h2 {
 #bottom #bottom_top p {
   display: flex;
   align-items: center;
+  
 }
 #bottom #bottom_top h2 {
   width: 80%;
@@ -326,6 +333,7 @@ h2 {
 <script>
 import tag from "./tag";
 import mooTrackOne from "./mooTrack_one";
+import { get } from 'http';
 export default {
   components: { tag, mooTrackOne },
   data() {
@@ -360,20 +368,73 @@ export default {
       detailStatus:false,
       moreHeight: {
         height: "0px"
-      }
+      },
+      startpx:0,
+      movepx:0
     };
   },
   methods: {
+    palysing(){//播放歌曲函数
+      var audio = this.$store.getters.getSingObj;      
+      audio.play();
+      this.$store.commit("setPlay", true);
+    },
+    pausesing(){//暂停歌曲函数
+      var audio = this.$store.getters.getSingObj;
+      audio.pause();
+      this.$store.commit("setPlay", false);
+    },
+    start(e){
+      this.startpx=e.touches[0].pageY;
+    },
+    move(e){
+      this.movepx=this.startpx-e.touches[0].pageY; 
+    },
+    end(){
+      if(this.movepx>10){
+        this.listSwitch();
+      }
+    },
+    listSwitch(){//切换下一首歌曲函数
+      console.log('触发我这个play.vue的函数');
+      var audio = this.$store.getters.getSingObj;
+      var arr=this.$store.getters.getPlaylist;
+      var index=this.$store.getters.getPlayindex;
+      console.log(index);
+      if(index<arr.length-1){
+        this.$store.commit("setPlayindex");
+        this.$store.commit("setSingUrl",arr[index]);
+      setTimeout(()=>{
+          this.palysing();
+        },100)
+      }else{
+        this.pausesing();
+        // this.playTime=0;
+      }
+    },
+    playsong(){
+      var audio = this.$store.getters.getSingObj;
+      if(this.$store.getters.getPlay){
+        this.$store.commit("setPlay",false);
+        audio.pause();
+      }else{
+        this.$store.commit("setPlay",true);
+        audio.play();
+      }
+    },
     getH() {
       var h = window.innerHeight;
       this.Height.height = h + "px";
     },
     showWord() {
+      this.$emit("show",true);
       this.$refs.bg.style.filter = "blur(0.7rem)";
       this.$refs.bgSongWord.style.display = "block";
       this.wordStatus=true;
+      e.stopPropagation();
     },
     closeWord() {
+      this.$emit("show",false);
       if(this.wordStatus==true){
         this.$refs.bg.style.filter = "";
         this.$refs.bgSongWord.style.display = "none";
@@ -382,6 +443,8 @@ export default {
       }
     },
     showdetail() {
+      // console.log(123);
+      this.$emit("show",true);
       this.detailStatus=true;
       var h = window.innerHeight;
       var i = h*0.1;
@@ -392,13 +455,14 @@ export default {
           this.$refs.bgSongWord.style.display = "block";
           var bgSongword=document.getElementById("bg-songword");
           bgSongword.style.transform ='translateY(' + h + 'px)';
-          console.log(h);
+          // console.log(h);
         }else if(h<=0){
           window.clearInterval(time);
         }
       },10)
     },
     closedetail() {
+      this.$emit("show",false);
       var h = window.innerHeight;
       var i = h*0.1;
       var height = 0;
@@ -409,7 +473,7 @@ export default {
           this.$refs.bgSongWord.style.display = "block";
           var bgSongword=document.getElementById("bg-songword");
           bgSongword.style.transform ='translateY(' + height + 'px)';
-          console.log(h);
+          // console.log(h);
         }else if(height>=h){
           var bgSongword=document.getElementById("bg-songword");
           bgSongword.style.transform ='none';
@@ -422,6 +486,8 @@ export default {
   },
   created() {
     this.getH();
+  },
+  mounted(){
   }
 };
 </script>
