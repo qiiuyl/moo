@@ -39,7 +39,7 @@ export default {
     getlist(){
       this.axios.get("/Recommend").then(result=>{
         this.list=result.data.slice(0,3);
-        // console.log(this.list)
+        console.log(this.list)
       });
     },
     getDate() {//获取时间函数
