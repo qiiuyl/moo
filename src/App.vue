@@ -30,10 +30,20 @@ export default {
         runing: false,
         paused: true
       },
-      playTime: 0
+      playTime: 0,
+      list:[]
     };
   },
   methods: {
+    getnewsong(){
+      this.axios.get("/newsong").then(res=>{
+        this.$store.commit('setPlaylist',res.data);
+        var list=this.$store.getters.getPlaylist;
+        console.log(list);
+        this.$store.commit('setSingUrl',list[0].s_video);
+        // console.log(res.data);
+      });
+    },
     palysing(){//播放歌曲函数
       var audio=document.getElementById("audio");
       audio.play();
@@ -46,11 +56,11 @@ export default {
     },
     listSwitch(){//切换下一首歌曲函数
       var audio=document.getElementById("audio");
-      var arr=this.$store.getters.getPlaylist;
+      var list=this.$store.getters.getPlaylist;
       var index=this.$store.getters.getPlayindex;
-      if(index<arr.length-1){
-        this.$store.commit("setPlayindex");
-        this.$store.commit("setSingUrl",arr[index]);
+      if(index<list.length-1){
+        this.$store.commit("setPlayindex",1);
+        this.$store.commit("setSingUrl",list[index].s_video);
       setTimeout(()=>{
           this.palysing();
         },100)
@@ -70,10 +80,11 @@ export default {
     }
   },
   created() {
-    console.log(this.$refs);
+    // console.log(this.$refs);
   },
   watch: {},
   mounted() {
+    this.getnewsong();
     var audio=document.getElementById("audio");
     this.$store.commit("setSingObj", audio);
     var time=setInterval(() => {
@@ -85,7 +96,7 @@ export default {
         // console.log("调用一次");
       }
     }, 1000);
-    console.dir(audio);
+    // console.dir(audio);
   }
 };
 </script>

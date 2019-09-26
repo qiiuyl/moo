@@ -3,8 +3,8 @@
     <div :style="Height" id="bg-songword" @click="closeWord" ref="bgSongWord">
       <div id="Word-content" :style="Height" v-if="(wordStatus==true)">
         <div id="content-header">
-          <p id="song_name">青花瓷</p>
-          <p id="song_singer">周杰伦</p>
+          <p id="song_name">{{$store.getters.getsingObj.s_name}}</p>
+          <p id="song_singer">{{$store.getters.getsingObj.singer_name}}</p>
         </div>
         <div class="wordclear"></div>
         <div id="content-middle">
@@ -31,8 +31,8 @@
             <img src="../../public/images/album_vinyl.png" alt class="last-img" />
           </div>
           <div class="text">
-            <p>青花瓷</p>
-            <p>周杰伦</p>
+            <p>{{$store.getters.getsingObj.s_name}}</p>
+            <p>{{$store.getters.getsingObj.singer_name}}</p>
           </div>
           <div class="five-img">
             <img src="../../public/images/ic_bk_download_white_30dp.png" alt />
@@ -50,7 +50,7 @@
     </div>
     <div id="bg" :style="Height" ref="bg">
       <div id="title" @click="showWord">
-        <h2>青花瓷-周杰伦(Jay)</h2>
+        <h2>{{$store.getters.getsingObj.s_name}}</h2>    <!--获取歌曲名-->
       </div>
       <div id="song-play" @click="playsong">
         <img v-show="!$store.getters.getPlay" src="../../public/images/ic_round_drop_down_24dp_white.png" alt />
@@ -79,7 +79,7 @@
       </div>
       <div id="bottom">
         <div id="bottom_top">
-          <h3>青花瓷</h3>
+          <h3>{{$store.getters.getsingObj.s_name}}</h3>
           <p>
             <img src="../../public/images/unzan.png" />
           </p>
@@ -87,7 +87,7 @@
         <div id="bottom_bottom">
           <p id="user">
             <router-link to="singer">
-              <span></span>周杰伦
+              <span></span>{{$store.getters.getsingObj.singer_name}}
             </router-link>
           </p>
           <p @click="showdetail">
@@ -113,7 +113,7 @@
 }
 #bg {
   width: 100%;
-  background: url("../../public/images/bg.jpeg") no-repeat;
+  /* background: url("../../public/images/bg.jpeg") no-repeat; */
   background-size: cover;
 }
 #bg-songword {
@@ -374,7 +374,15 @@ export default {
     };
   },
   methods: {
-    palysing(){//播放歌曲函数
+    changebg(){
+      // console.log(123);
+      this.axios.get('/bgimg').then(res=>{
+        var i=Math.floor(Math.random()*15);
+        var url=res.data[i].b_img;
+        this.$refs.bg.style.backgroundImage=`url('${url}')`;
+      });
+    },
+    playsing(){//播放歌曲函数
       var audio = this.$store.getters.getSingObj;      
       audio.play();
       this.$store.commit("setPlay", true);
@@ -385,41 +393,67 @@ export default {
       this.$store.commit("setPlay", false);
     },
     start(e){
+      // console.log("调用触摸开始");
       this.startpx=e.touches[0].pageY;
     },
     move(e){
       this.movepx=this.startpx-e.touches[0].pageY; 
     },
     end(){
+      // console.log("调用触摸结束");
       if(this.movepx>10){
-        this.listSwitch();
+        this.listSwitch(1);
+      }else if(this.movepx<-10){
+        if(this.$store.getters.getPlayindex==0){
+          // console.log("进入了0向上滑状态");
+          //  var audio = this.$store.getters.getSingObj;
+          //  var list=this.$store.getters.getPlaylist;
+          //  var index=this.$store.getters.getPlayindex;
+          //  this.$store.commit("initIndex");
+          // this.listSwitch(-1);
+          return;
+         }else{
+          this.listSwitch(-1);
+        }
       }
+      this.movepx=0;
     },
-    listSwitch(){//切换下一首歌曲函数
-      console.log('触发我这个play.vue的函数');
+    listSwitch(i,add){
+      //切换下一首歌曲函数
+      // console.log('触发我这个play.vue的函数');
       var audio = this.$store.getters.getSingObj;
-      var arr=this.$store.getters.getPlaylist;
+      var list=this.$store.getters.getPlaylist;
       var index=this.$store.getters.getPlayindex;
-      console.log(index);
-      if(index<arr.length-1){
-        this.$store.commit("setPlayindex");
-        this.$store.commit("setSingUrl",arr[index]);
+      // console.log(index);
+      if(index<list.length-1){
+        if(!add){
+          this.$store.commit("setPlayindex",i);
+        }
+        index=this.$store.getters.getPlayindex;
+        this.$store.commit("setSingUrl",list[index].s_video);
       setTimeout(()=>{
-          this.palysing();
+          this.playsing();
         },100)
       }else{
-        this.pausesing();
-        // this.playTime=0;
+        // console.log("到达最大值"+index);
+        this.$store.commit("initIndex");
+        // console.log("已经将index初始化");
+        setTimeout(() => {
+          this.listSwitch(1,true);
+          return;
+          // console.log(123)
+        }, 100);
       }
+      this.changebg()
     },
     playsong(){
-      var audio = this.$store.getters.getSingObj;
+      // console.log("调用播放歌曲");
       if(this.$store.getters.getPlay){
-        this.$store.commit("setPlay",false);
-        audio.pause();
+        this.pausesing();
+        // return
       }else{
-        this.$store.commit("setPlay",true);
-        audio.play();
+        this.playsing();
+        // return
       }
     },
     getH() {
@@ -488,6 +522,7 @@ export default {
     this.getH();
   },
   mounted(){
+    this.changebg();
   }
 };
 </script>

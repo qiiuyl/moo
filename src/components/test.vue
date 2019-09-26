@@ -1,15 +1,7 @@
 <template>
   <div class="test">
     <!-- <button @click="open">开启</button> -->
-    <van-swipe :show-indicators="false" :initial-swipe="0" vertical>
-      <van-swipe-item><play></play></van-swipe-item>
-      <van-swipe-item><play></play></van-swipe-item>
-      <van-swipe-item><play></play></van-swipe-item>
-      <van-swipe-item><play></play></van-swipe-item>
-    </van-swipe>
-    <div class="mask" ref="mask">
-      <button @click="close">关闭</button>
-    </div>
+    
   </div>
 </template>
 
@@ -22,24 +14,24 @@ function bodyScroll(e) {
 }
 export default {
   data() {
-    return {};
+    return {
+      lrc:''
+    };
   },
   methods: {
-    open() {
-      document.addEventListener("touchmove", bodyScroll, {
-        passive: false
+    getlrc(){
+      // http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.song.lry&songid=877578
+      this.axios.get("/yaowei").then(res=>{
+        this.lrc=res.data;
+        console.log(this.lrc[0]);
       });
-      this.$refs.mask.style.display = "block";
     },
-    close() {
-      document.removeEventListener("touchmove", bodyScroll, {
-        passive: false
-      });
-      this.$refs.mask.style.display = "none";
-    }
   },
   components:{
     play
+  },
+  created(){
+    this.getlrc();
   }
 };
 </script>

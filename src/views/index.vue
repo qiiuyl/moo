@@ -27,8 +27,6 @@
 				<van-swipe :show-indicators="false" :initial-swipe="0" vertical :style="`height:${height}px`">
       	<van-swipe-item><play @show="show"></play></van-swipe-item>
       	<van-swipe-item><play @show="show"></play></van-swipe-item>
-      	<van-swipe-item><play @show="show"></play></van-swipe-item>
-      	<van-swipe-item><play @show="show"></play></van-swipe-item>
     		</van-swipe>
       </van-tab>
       <van-tab name="discover">
