@@ -11,8 +11,9 @@ import { Tab, Tabs } from "vant";
 import "mint-ui/lib/style.css"; //引入mintui样式
 import "vant/lib/index.css";
 import lyric from "lyric-parser";
+import {Base64} from 'js-base64';
 
-
+Vue.use(Base64);
 Vue.use(Swipe).use(SwipeItem);
 Vue.use(Tab).use(Tabs);
 Vue.use(Vuex);
@@ -21,8 +22,8 @@ Vue.use(Vuex);
 Vue.component("backHeader", backHeader);
 Vue.config.productionTip = false;
 // 配置axios默认基础路径
+axios.defaults.baseURL = "http://192.168.1.104:5050";
 // axios.defaults.baseURL = "http://176.122.14.69:8080";
-axios.defaults.baseURL = "http://176.122.14.69:8080";
 // 注册mintUI
 Vue.use(mintUI);
 // 注册axios
