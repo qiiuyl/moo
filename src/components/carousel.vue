@@ -133,7 +133,7 @@ export default {
 .bgb {
   width: 100%;
   height: 100%;
-  background: #8c8c8c;
+  background: #d09daf;
 }
 .album .album-item {
   width: 100%;

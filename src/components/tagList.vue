@@ -5,16 +5,7 @@
       <img src="images/ic_round_arrow_back_ios_white_24px.png" alt />
     </router-link>
 		<div class="tags">
-			<tag :place="false" class="tag"></tag>
-			<tag :place="false" class="tag"></tag>
-			<tag :place="false" class="tag"></tag>
-			<tag :place="false" class="tag"></tag>
-			<tag :place="false" class="tag"></tag>
-			<tag :place="false" class="tag"></tag>
-			<tag :place="false" class="tag"></tag>
-			<tag :place="false" class="tag"></tag>
-			<tag :place="false" class="tag"></tag>
-			<tag :place="false" class="tag"></tag>
+			<tag :place="false" class="tag" v-for="(elem,i) of list" :key="i" :tagName="elem.t_name"></tag>
 		</div>
 	</div>
 </template>
@@ -22,7 +13,24 @@
 <script>
 import tag from "./tag";
 export default {
-	components:{tag}
+	data(){
+		return{
+			list:[]
+		}
+	},
+	components:{
+		tag
+	},
+	methods:{
+		getTag(){
+			this.axios.get("./mootag").then(res=>{
+				this.list=res.data;
+			})
+		}
+	},
+	created(){
+		this.getTag();
+	}
 }
 </script>
 

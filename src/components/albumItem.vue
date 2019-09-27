@@ -5,7 +5,7 @@
 			<img src="images\album_vinyl_full.png" alt="" class="bg-img">
 		</div>
 		<div class="album-info">
-			<span class="album-name" v-text="obj.s_name"></span>
+			<span class="album-name" v-text="obj.a_name"></span>
 			<span class="album-author" v-text="obj.singer_name"></span>
 			<tag :place="false" :tagName="obj.t_name"></tag>
 		</div>
@@ -57,5 +57,4 @@ export default {
 .album-name{
 	font-size: 1rem;
 }
-
 </style>

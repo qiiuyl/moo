@@ -1,33 +1,24 @@
 <template>
   <div class="video-detail">
-    <back-header :title="'视频标题'" :bgcolor="true"></back-header>
+    <back-header :title="'视频详情'" :bgcolor="true"></back-header>
     <div class="fill"></div>
-    <video src="video/x.mp4" controls></video>
+    <video :src="name.v_origin" :poster="name.v_img" controls></video>
     <div class="list-info inner-border">
       <div class="title">
-        <span>音乐让贫穷的我精神富足够起来</span>
+        <span v-text="name.v_Subheading"></span>
         <img src="images/ic_user_profile_favor.png" alt />
         <img src="images/ic_bk_more_horizontal_fat_white_48dp.png" alt />
       </div>
       <div class="user">
-        <img src="images/album_vinyl_full.png" alt />
-        <span class="username my-small">用户名123456</span>
+        <img :src="singer.singer_img" alt />
+        <span class="username my-small">丘某丽</span>
       </div>
       <div
-        class="my-small subtitle"
-      >我也不知道写些什么就随便vi按撒犯得上广泛受到我也不知道写就随便vi按撒犯得上广泛受到我也不知道写就随便vi按撒犯得上广泛受到我也不知道写些什么就随便vi按撒犯得上广泛受到</div>
+        class="my-small subtitle" v-text="name.v_describe"></div>
     </div>
     <div class="tag-box inner-border">
       <div class="tags" id="swipe" :style="`width:${width}%`">
-        <tag></tag>
-        <tag></tag>
-        <tag></tag>
-        <tag></tag>
-        <tag></tag>
-        <tag></tag>
-        <tag></tag>
-        <tag></tag>
-        <tag></tag>
+        <tag v-for="(elem,i) of tag" :key="i" :tagName="elem.t_name"></tag>
       </div>
     </div>
     <div class="content-box inner-border">
@@ -38,20 +29,10 @@
       <span class="title">接下来播放</span>
       <!-- <song-item></song-item> -->
       <ul class="next-play">
-        <li>
-          <img src="images/video.jpg" alt />
-          <span class="play-title">小威的第一部视频第一部视频第一部视频第一部视频部视频第一部视频第一部视频第一部视频</span>
-          <span class="play-subtitle">某丽的第一部视频第一部视频第一部视频第一部视频</span>
-        </li>
-        <li>
-          <img src="images/video.jpg" alt />
-          <span class="play-title">小威的第一部视频第一部视频第一部视频第一部视频部视频第一部视频第一部视频第一部视频</span>
-          <span class="play-subtitle">某丽的第一部视频第一部视频第一部视频第一部视频</span>
-        </li>
-        <li>
-          <img src="images/video.jpg" alt />
-          <span class="play-title">小威的第一部视频第一部视频第一部视频第一部视频部视频第一部视频第一部视频第一部视频</span>
-          <span class="play-subtitle">某丽的第一部视频第一部视频第一部视频第一部视频</span>
+        <li v-for="(elem,i) of video_list" :key="i">
+          <img :src="elem.v_img" alt />
+          <span class="play-title" v-text="elem.v_name"></span>
+          <span class="play-subtitle" v-text="elem.v_describe"></span>
         </li>
       </ul>
     </div>
@@ -76,7 +57,11 @@ export default {
       width: 0,
       show_select: false,
       select_list: [],
-      show_comment:false
+      show_comment:false,
+      tag:[],
+      name:[],
+      singer:[],
+      video_list:[]
     };
   },
   components: {
@@ -88,6 +73,15 @@ export default {
     backHeader
   },
   methods: {
+    get_video(){
+      this.axios.get("./video?vid=1").then(result=>{
+        console.log(result.data);
+        this.tag=result.data[2];
+        this.name=result.data[0][0];
+        this.singer=result.data[1][0];
+        this.video_list=result.data[3];
+      })
+    },
     open(){
       this.show_comment=!this.show_comment;
       // console.log(this.show_comment);
@@ -145,7 +139,9 @@ export default {
       }); //绑定触控结束事件  手指离开屏幕时触发
     }
   },
-  created() {},
+  created() {
+    this.get_video();
+  },
   mounted() {
     this.S_width();
     this.swipeX(this.width);

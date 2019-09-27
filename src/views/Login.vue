@@ -1,10 +1,11 @@
 <template>
   <div class="login-img" :style=Height>
-    <mt-header title="登录">
+    <!-- <mt-header title="登录">
       <router-link to="/Registration" slot="right">
         <mt-button icon="">注册</mt-button>
       </router-link>
-    </mt-header>
+    </mt-header> -->
+    <back-header :title="'登录'"></back-header>
     <div class="login-input">
       <input type="text" placeholder="用户名" v-model="uname">
       <div class="pd-top">
@@ -15,14 +16,15 @@
       <mt-button @click="btn">登 录</mt-button>
     </div>
     <div class="login-font">
-      <a href="#">忘记密码？</a>
-      <div>
-        <span>随意浏览</span>
+      <a href="#" class="login-a">忘记密码?</a>
+      <div class="login-link">
+        <span><router-link to="/Registration">注册</router-link></span>
       </div>
     </div>
   </div>
 </template>
 <script>
+import backHeader from "../components/back_header"
 export default {
   data(){
     return{
@@ -68,6 +70,9 @@ export default {
   },
   created(){
     this.getH();
+  },
+  components:{
+    backHeader
   }
 }
 </script>
@@ -144,10 +149,10 @@ export default {
     text-align: center;
     margin-top:25px;
   }
-  .login-font a{
-    padding-left:100px;
+  .login-font /deep/ .login-a{
+    padding-left:90px;
   }
-  .login-font span{
-    margin-left:30px;
+  .login-link span{
+    margin-left:50px;
   }
 </style>
