@@ -1,12 +1,12 @@
 <template>
 	<div class="album-item">
 		<div class="album-img">
-			<img :src="obj.l_img" alt="" class="main-img">
+			<img :src="obj.a_img" alt="" class="main-img">
 			<img src="images\album_vinyl_full.png" alt="" class="bg-img">
 		</div>
 		<div class="album-info">
-			<span class="album-name" v-text="obj.l_title">我想要的(I,Me,Mine)</span>
-			<span class="album-author" v-text="obj.l_describe"></span>
+			<span class="album-name" v-text="obj.a_name"></span>
+			<span class="album-author" v-text="obj.singer_name"></span>
 			<tag :place="false" :tagName="obj.t_name"></tag>
 		</div>
 	</div>
@@ -57,5 +57,4 @@ export default {
 .album-name{
 	font-size: 1rem;
 }
-
 </style>

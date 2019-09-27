@@ -4,33 +4,31 @@
     <div class="top-fill"></div>
     <search :place="false"></search>
     <div class="list-cover">
-      <img src="images/IMG_3601.GIF" alt class="list-img" />
+      <img :src="list.l_img" alt class="list-img" />
       <music-icon></music-icon>
     </div>
     <div class="list-info">
       <div class="title">
-        <span>音乐让贫穷的我精神富足够起来</span>
+        <span v-text="list.l_title"></span>
         <img src="images/ic_user_profile_favor.png" alt />
       </div>
       <div class="user">
-        <img src="images/album_vinyl_full.png" alt />
-        <span class="username my-small">用户名123456</span>
+        <img :src="list.u_img" alt />
+        <span class="username my-small" v-text="list.u_name"></span>
       </div>
-      <div
-        class="my-small subtitle"
-      >我也不知道写些什么就随便vi按撒犯得上广泛受到我也不知道写就随便vi按撒犯得上广泛受到我也不知道写就随便vi按撒犯得上广泛受到我也不知道写些什么就随便vi按撒犯得上广泛受到</div>
+      <div class="my-small subtitle" v-text="list.l_describe"></div>
     </div>
     <div class="tag-box">
       <div class="tags" id="swipe" :style="`width:${width}%`">
+        <tag v-for="(elem,i) of tag" :key="i" :tagName="elem.t_name"></tag>
+        <!-- <tag></tag>
         <tag></tag>
         <tag></tag>
         <tag></tag>
         <tag></tag>
         <tag></tag>
         <tag></tag>
-        <tag></tag>
-        <tag></tag>
-        <tag></tag>
+        <tag></tag> -->
       </div>
     </div>
     <song-list :songlist="list"></song-list>
@@ -48,7 +46,9 @@ export default {
       width:0,
       show_select:false,
       select_list:[],
-      list:[]
+      list:{},
+      tag:[],
+      sing:[]
     };
   },
   components: {
@@ -59,8 +59,14 @@ export default {
   },
   methods: {
   get_list() {
-      this.axios.get("/newsong").then(result => {
-        this.list = result.data;
+      this.axios.get("/listDetail?lid=1").then(result => {
+        console.log(result.data);
+        this.list = result.data[0][0];
+        this.tag = result.data[1];
+        this.sing = result.data[2];
+        // console.log(this.album);
+        // console.log(this.singer);
+        // console.log(this.sing);
       });
     },
   change_select(){

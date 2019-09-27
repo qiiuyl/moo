@@ -17,7 +17,7 @@
           </div>
         </div>
 				<div class="comment-main">
-					这是一条评论的评论这是一条评论的评论这是一条评论的评论这是一条评论的评论这是一条评论的评论这是一条评论的评论这是一条评论的评论
+					这个男主好帅啊，身材又好，连自闭都这么有型！我渴啊~~~
 				</div>
       </li>
 			<li class="comment-item">
@@ -26,7 +26,7 @@
             <img src="images/user.jpg" alt />
             <div class="left-info">
               <span class="username">小威</span>
-              <span class="time my-small">30分钟前</span>
+              <span class="time my-small">32分钟前</span>
             </div>
           </div>
           <div class="right">
@@ -35,7 +35,7 @@
           </div>
         </div>
 				<div class="comment-main">
-					这是一条评论的评论这是一条评论的评论这是一条评论的评论这是一条评论的评论这是一条评论的评论这是一条评论的评论这是一条评论的评论
+					笑而不语是一种成长，痛而不言是一种历练
 				</div>
       </li>
     </ul>
