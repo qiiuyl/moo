@@ -1,8 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import index from "./views/index"
-
-
+import index from "./views/index";
 import playListDetail from "./components/playListDetail";
 import videoDetail from "./components/videoDetail";
 
@@ -24,10 +22,15 @@ export default new Router({
     { path: "/index", component: index },
     
     { path: "/videoDetail", component: videoDetail },
-    { path: "/album", component: album },
+    { path: "/playList_one", component: playList_one },
+    { path: "/mooTrack", component: mooTrack },
+    { path: "/playDetail", component: playListDetail },
+    { path: "/videoDetail", component: videoDetail },
+    { path: "/tagpage", component: tagpage },
     { path: "/album_one", component: album_one },
-    { path: "/playListDetail", component: playListDetail },
-    { path: "/albumDetail", component: albumDetail },
-
+    { path: "/singer", component: singer },
+    { path: "/user", component: user },
+    { path: "/header", component: header },
+    { path: "/test", component: test }
   ]
 });

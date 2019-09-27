@@ -25,6 +25,9 @@ img{
 #app{
 	color:#fff;
 }
+.pb{
+	padding-bottom: 3rem;
+}
 /* 每个页面距离边框的内边距为3% */
 .inner-border{
 	padding: 0 3%;

@@ -27,11 +27,9 @@
 				<van-swipe :show-indicators="false" :initial-swipe="0" vertical :style="`height:${height}px`">
       	<van-swipe-item><play @show="show"></play></van-swipe-item>
       	<van-swipe-item><play @show="show"></play></van-swipe-item>
-      	<van-swipe-item><play @show="show"></play></van-swipe-item>
-      	<van-swipe-item><play @show="show"></play></van-swipe-item>
     		</van-swipe>
       </van-tab>
-      <van-tab name="discover">
+      <van-tab name="discover" class="pb">
 				<!-- discover面板组件 -->
 				<search></search>
 				<!-- <div class="search-fill"></div> -->
@@ -82,6 +80,16 @@ export default {
 	created(){
 		this.height=window.innerHeight;
 		// console.dir(this.$store.getters.getSingObj);
+	},
+	watch:{
+		active(){
+			if(this.active=='play'){
+				this.$emit('showplayer',false);
+			}else if(this.active=='discover'){
+				this.$emit('showplayer',true);
+			}
+
+		}
 	}
 };
 </script>

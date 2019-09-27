@@ -1,19 +1,25 @@
 <template>
   <div id="app">
-    <router-view></router-view>
-    <div class="player">
-      <img src="images/vinyl_disk_60dp.png" alt class="rotate-img" :class="$store.getters.getPlay?'runing':'paused'" />
+    <router-view @showplayer="showplayer"></router-view>
+    <div class="player" ref="player">
+      <img
+        src="images/vinyl_disk_60dp.png"
+        alt
+        class="rotate-img"
+        :class="$store.getters.getPlay?'runing':'paused'"
+      />
       <div class="player-info">
         <span
           class="time"
-          ref="time" 
+          ref="time"
           :class="$store.getters.getPlay?'opacity1':'opacity2'"
         >{{`0${Math.floor(playTime/60)}:${playTime%60>=10?playTime%60:'0'+playTime%60}`}}</span>
         <button class="player-btn" @click="changeplay">
-          <img 
-          :src="$store.getters.getPlay?'images/ic_notification_pause.png':'images/ic_notification_play.png'" 
-          :class="$store.getters.getPlay?'opacity1':'opacity2'"
-          alt/>
+          <img
+            :src="$store.getters.getPlay?'images/ic_notification_pause.png':'images/ic_notification_play.png'"
+            :class="$store.getters.getPlay?'opacity1':'opacity2'"
+            alt
+          />
         </button>
       </div>
     </div>
@@ -21,7 +27,7 @@
   </div>
 </template>
 <script>
-import { setTimeout } from 'timers';
+import { setTimeout } from "timers";
 export default {
   data() {
     return {
@@ -30,62 +36,89 @@ export default {
         runing: false,
         paused: true
       },
-      playTime: 0
+      playTime: 0,
+      list: []
     };
   },
   methods: {
-    palysing(){//播放歌曲函数
-      var audio=document.getElementById("audio");
+    showplayer(bool) {
+      console.log("执行成功");
+      if (bool) {
+        this.$refs.player.style.display = 'flex';
+        this.$refs.player.style.opacity = 1;
+      } else {
+        this.$refs.player.style.opacity = 0;
+        setTimeout(() => {
+          this.$refs.player.style.display = "none";
+        }, 300);
+      }
+    },
+    getnewsong() {
+      this.axios.get("/newsong").then(res => {
+        this.$store.commit("setPlaylist", res.data[1]);
+        var list = this.$store.getters.getPlaylist;
+        console.log(list);
+        this.$store.commit("setSingUrl", list[0].s_video);
+        
+        // console.log(res.data);
+      });
+    },
+    palysing() {
+      //播放歌曲函数
+      var audio = document.getElementById("audio");
       audio.play();
       this.$store.commit("setPlay", true);
     },
-    pausesing(){//暂停歌曲函数
-      var audio=document.getElementById("audio");
+    pausesing() {
+      //暂停歌曲函数
+      var audio = document.getElementById("audio");
       audio.pause();
       this.$store.commit("setPlay", false);
     },
-    listSwitch(){//切换下一首歌曲函数
-      var audio=document.getElementById("audio");
-      var arr=this.$store.getters.getPlaylist;
-      var index=this.$store.getters.getPlayindex;
-      if(index<arr.length-1){
-        this.$store.commit("setPlayindex");
-        this.$store.commit("setSingUrl",arr[index]);
-      setTimeout(()=>{
+    listSwitch() {
+      //切换下一首歌曲函数
+      var audio = document.getElementById("audio");
+      var list = this.$store.getters.getPlaylist;
+      var index = this.$store.getters.getPlayindex;
+      if (index < list.length - 1) {
+        this.$store.commit("setPlayindex", 1);
+        this.$store.commit("setSingUrl", list[index].s_video);
+        setTimeout(() => {
           this.palysing();
-        },100)
-      }else{
+        }, 100);
+      } else {
         this.pausesing();
-        this.playTime=0;
+        this.playTime = 0;
       }
     },
     changeplay() {
       var audio = this.$store.getters.getSingObj;
       var totalTime = audio.duration;
-      if(this.$store.getters.getPlay){
+      if (this.$store.getters.getPlay) {
         this.pausesing();
-      }else{
+      } else {
         this.palysing();
       }
     }
   },
   created() {
-    console.log(this.$refs);
+    // console.log(this.$refs);
   },
   watch: {},
   mounted() {
-    var audio=document.getElementById("audio");
+    this.getnewsong();
+    var audio = document.getElementById("audio");
     this.$store.commit("setSingObj", audio);
-    var time=setInterval(() => {
+    var time = setInterval(() => {
       this.playTime = parseInt(audio.currentTime);
-      if(audio.ended){
-        var i=this.$store.getters.getPlayindex;
-        var list=this.$store.getters.getPlaylist;
+      if (audio.ended) {
+        var i = this.$store.getters.getPlayindex;
+        var list = this.$store.getters.getPlaylist;
         this.listSwitch();
         // console.log("调用一次");
       }
     }, 1000);
-    console.dir(audio);
+    // console.dir(audio);
   }
 };
 </script>
@@ -134,10 +167,10 @@ export default {
 .paused {
   animation-play-state: paused;
 }
-.opacity2{
-  opacity :0.5; 
+.opacity2 {
+  opacity: 0.5;
 }
-.opacity1{
+.opacity1 {
   opacity: 1;
 }
 .player {
@@ -148,5 +181,6 @@ export default {
   display: flex;
   /* display: none; */
   align-items: center;
+  transition: opacity 0.3s linear;
 }
 </style>
