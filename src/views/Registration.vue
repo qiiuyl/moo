@@ -1,10 +1,6 @@
 <template>
   <div class="login-img" :style=Height>
-    <mt-header title="注册账号">
-      <router-link to="/" slot="left">
-        <mt-button icon="back"></mt-button>
-      </router-link>
-    </mt-header>
+    <back-header :title="'注册'" :bgcolor="true"></back-header>
     <div class="login-input">
       <input type="text" placeholder="手机号" v-model="phone">
       <div class="input-user">
@@ -18,7 +14,7 @@
       <input type="text"><button>获取验证码</button>
     </div> -->
     <div class="login-btn" >
-      <mt-button @click="reg">确 定</mt-button>
+      <button @click="reg">确 定</button>
     </div>
   </div>
 </template>
@@ -113,7 +109,7 @@ export default {
     height:35px;
     border:0;
     color:#fff;
-    border-bottom:1px solid #fff;
+    border-bottom:1px solid #bbb;
     padding:5px;
     box-sizing: border-box;
   }

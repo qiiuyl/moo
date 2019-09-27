@@ -20,9 +20,10 @@
     <div class="content-box inner-border">
       <router-link to="/" class="title">
         <span>相关歌曲</span>
-        <img src="images/ic_round_arrow_back_ios_white_24px.png" alt />
+        <!-- <img src="images/ic_round_arrow_back_ios_white_24px.png" alt /> -->
       </router-link>
-      <!-- <song-item></song-item> -->
+      <song-item v-for="(elem,i) of sing" :key="i" :obj="elem">
+      </song-item>
     </div>
     <div class="content-box inner-border">
       <router-link to="/" class="title">
@@ -31,7 +32,7 @@
       </router-link>
       <div class="album">
         <div class="album_content">
-          <!-- <album-singer></album-singer> -->
+          <album-singer v-for="(elem,i) of album" :obj="elem" :key="i"></album-singer>
         </div>
       </div>
     </div>
@@ -53,13 +54,13 @@ export default {
   methods:{
     getlist(){
       this.axios.get('/tag?tid=1').then(res=>{
-        // console.log(res.data[0]);
+        console.log(res.data);
         this.singer=res.data[0].slice(0,7);
         console.log(this.singer);
         this.sing=res.data[0].slice(0,5);
         console.log(this.sing);
         this.album=res.data[1].slice(0,6);
-        console.log(this.album);
+        // console.log(this.album);
       });
     }
   },

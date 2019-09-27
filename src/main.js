@@ -12,6 +12,7 @@ import "mint-ui/lib/style.css"; //引入mintui样式
 import "vant/lib/index.css";
 import lyric from "lyric-parser";
 import {Base64} from 'js-base64';
+import qs from "qs";
 
 Vue.use(Base64);
 Vue.use(Swipe).use(SwipeItem);
@@ -29,6 +30,7 @@ Vue.use(mintUI);
 // 注册axios
 Vue.prototype.axios = axios;
 Vue.prototype.lyric = lyric;
+Vue.prototype.qs = qs;
 
 var store = new Vuex.Store({
   state: {

@@ -5,7 +5,9 @@
       <div class="user-header">
         <img class="header01" src="images/ic_round_arrow_back_ios_white_24px.png" alt="" @click="back">
         <div>我的音乐</div>
-        <img class="header02" src="images/set.png" alt="">
+        <router-link to="/set">
+          <img class="header02" src="images/set.png" alt="">
+        </router-link>
       </div>
       <!-- 用户详情 -->
       <div class="user-details">

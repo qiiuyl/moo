@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="login-btn">
-      <mt-button @click="btn">登 录</mt-button>
+      <button @click="btn">登 录</button>
     </div>
     <div class="login-font">
       <a href="#" class="login-a">忘记密码?</a>
@@ -62,6 +62,8 @@ export default {
             this.$toast({
               message:'登录成功',
               position:'bottom'
+            }).then(res=>{
+              this.$router.push("/user");
             })
           }
         })

@@ -2,12 +2,22 @@
   <div id="album">
     <div class="album-img">
       <img class="bg-img" src="../../public/images/album_vinyl_full.png" alt="">
-      <img class="top-img" src="../../public/images/playlist.jpg" alt="">
+      <img class="top-img" :src="obj.a_img" alt="">
     </div>
-    <p>健康歌曲</p>
+    <p>obj.a_name</p>
     <p>2017-10-06</p>
   </div>
 </template>
+
+<script>
+export default {
+  props:["obj"],
+  created(){
+    console.log(this.obj);
+  }
+}
+</script>
+
 <style scoped>
   #album{
     width:45%;

@@ -1,10 +1,8 @@
 <template>
   <div class="inner-border">
     <!-- 头部 -->
-    <div class="set-header">
-        <img class="set01" src="images/ic_round_arrow_back_ios_white_24px.png" alt="">
-        <div>设置</div>
-    </div>
+    <back-header :title="'设置'"></back-header>
+    <div class="top-fill"></div>
     <div class="set-whole">
     <mt-cell title="个人资料" is-link></mt-cell>
     <mt-cell title="风格" value="BLACK"></mt-cell>
