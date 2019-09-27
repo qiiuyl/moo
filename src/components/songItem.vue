@@ -4,7 +4,8 @@
       <input type="checkbox"/>
     </div>
     <div class="song-info" @click="switchSing">
-      <img :src="obj.a_img" alt />
+      <img :src="obj.a_img" v-if="!hiddenimg" alt/>
+      <span v-if="hiddenimg"><span v-show="obj.s_id==1">0</span>{{obj.s_id}}</span>
       <div class="info">
         <h4>{{obj.s_name}}</h4>
         <span class="my-small">{{obj.singer_name}}</span>
@@ -87,7 +88,7 @@ export default {
   data() {
     return {};
   },
-  props: ["is_select",'obj'],
+  props: ["is_select",'obj','hiddenimg'],
   methods: {
     switchSing(){
       var audio = this.$store.getters.getSingObj;
@@ -113,7 +114,7 @@ export default {
     }
   },
   created() {
-    // console.log(this.obj);
+    // console.log(this.hiddenimg);
   }
 };
 </script>

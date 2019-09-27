@@ -1,9 +1,9 @@
 <template>
 	<div class="album-item">
-		<div class="album-img">
+		<router-link class="album-img" :to="`/albumDetail/${obj.a_id}`">
 			<img :src="obj.a_img" alt="" class="main-img">
 			<img src="images\album_vinyl_full.png" alt="" class="bg-img">
-		</div>
+		</router-link>
 		<div class="album-info">
 			<span class="album-name" v-text="obj.a_name"></span>
 			<span class="album-author" v-text="obj.singer_name"></span>

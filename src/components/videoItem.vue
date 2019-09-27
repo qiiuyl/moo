@@ -2,7 +2,7 @@
   <div class="video-item">
     <div class="video-top">
       <img :src="obj.v_img" alt />
-      <router-link class="mask" to="/">
+      <router-link class="mask" :to="`/videoDetail/${obj.v_id}`">
         <!-- <img src="images/ic_round_drop_down_24dp_white.png" alt=""> -->
       </router-link>
       <tag :place="true" :tagName="obj.t_name"></tag>

@@ -377,7 +377,7 @@ export default {
     changebg(){
       // console.log(123);
       this.axios.get('/bgimg').then(res=>{
-        var i=Math.floor(Math.random()*15);
+        var i=Math.floor(Math.random()*40);
         var url=res.data[i].b_img;
         this.$refs.bg.style.backgroundImage=`url('${url}')`;
       });

@@ -1,6 +1,6 @@
 <template>
   <div class="playlist-detail inner-border">
-    <back-header :title="'视频标题'" :backcolor="true" :more="true" :share="true"></back-header>
+    <back-header :backcolor="true" :more="true" :share="true"></back-header>
     <div class="top-fill"></div>
     <search :place="false"></search>
     <div class="list-cover">
@@ -21,17 +21,9 @@
     <div class="tag-box">
       <div class="tags" id="swipe" :style="`width:${width}%`">
         <tag v-for="(elem,i) of tag" :key="i" :tagName="elem.t_name"></tag>
-        <!-- <tag></tag>
-        <tag></tag>
-        <tag></tag>
-        <tag></tag>
-        <tag></tag>
-        <tag></tag>
-        <tag></tag>
-        <tag></tag> -->
       </div>
     </div>
-    <song-list :songlist="list"></song-list>
+    <song-list :songlist="sing"></song-list>
   </div>
 </template>
 
@@ -59,11 +51,12 @@ export default {
   },
   methods: {
   get_list() {
-      this.axios.get("/listDetail?lid=1").then(result => {
+      this.axios.get(`/listDetail?lid=${this.lid}`).then(result => {
         console.log(result.data);
         this.list = result.data[0][0];
         this.tag = result.data[1];
         this.sing = result.data[2];
+        
         // console.log(this.album);
         // console.log(this.singer);
         // console.log(this.sing);
@@ -128,11 +121,15 @@ export default {
   mounted() {
     this.S_width();
     this.swipeX(this.width);
-  }
+  },
+  props:['lid']
 };
 </script>
 
 <style scoped>
+.playlist-detail{
+  padding-bottom: 5rem;
+}
 .tag-box {
   width: 100%;
   overflow: hidden;
@@ -153,9 +150,13 @@ export default {
   -webkit-line-clamp: 2;
   overflow: hidden;
 }
+.user{
+  margin: 0.5rem 0;
+}
 .user img {
   width: 2.2rem;
   vertical-align: middle;
+  border-radius:50% 
 }
 .user span {
   margin-left: 0.8rem;
@@ -189,11 +190,12 @@ export default {
 }
 .title {
   display: flex;
+  justify-content: space-between;
 }
 .list-info .title span {
-  width: 90%;
+  width: 88%;
 }
 .list-info .title img {
-  width: 10%;
+  width: 2.2rem;
 }
 </style>

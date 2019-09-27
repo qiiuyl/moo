@@ -5,7 +5,7 @@
       <img src="images/ic_round_arrow_back_ios_white_24px.png" alt />
     </router-link>
     <song-item v-for="(elem,i) of list" :key="i" :obj="elem" @play="play"></song-item>
-    <button @click="testfn">点击播放</button>
+    <!-- <button @click="testfn">点击播放</button> -->
   </div>
 </template>
 
@@ -33,8 +33,8 @@ export default {
 		},
     get_list(){
       this.axios.get("/newsong").then(result=>{
-        this.list=result.data.slice(0,5);
-        // console.log()
+        this.list=result.data[1].slice(0,5);
+        console.log(this.list);
       })
     }
   },

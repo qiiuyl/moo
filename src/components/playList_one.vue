@@ -1,5 +1,5 @@
 <template>
-  <div class="inner-border">
+  <div class="inner-border pb">
     <back-header :backcolor="true" :title="'MOO新歌'"></back-header>
     <div class="top-fill"></div>
     <play-list :one="true"></play-list>

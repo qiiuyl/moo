@@ -37,7 +37,7 @@
 				<radio></radio>
 				<play-list></play-list>
 				<moo-track></moo-track>
-				<!-- <album></album> -->
+				<album></album>
 				<moo-video></moo-video>
 				<tag-list></tag-list>
 				<!-- <h1>{{$store.getters.getPlay}}</h1> -->

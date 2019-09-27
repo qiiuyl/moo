@@ -3,7 +3,7 @@
     <back-header :share="true" :title="'长江后浪'"></back-header>
     <div class="top-img">
       <img src="images/pic_default_wide_dark.png" alt />
-			<span class="top-img-span">#这是个标签</span>
+      <span class="top-img-span">#这是个标签</span>
     </div>
     <div class="content-box inner-border">
       <router-link to="/" class="title">
@@ -11,33 +11,9 @@
         <img src="images/ic_round_arrow_back_ios_white_24px.png" alt />
       </router-link>
       <ul class="singer-list">
-        <li class="singer-item">
-          <img src="images/user.jpg" alt />
-          <span>小威与某丽的爱恨情仇,生离死别,棒打鸳鸯,命途多舛</span>
-        </li>
-        <li class="singer-item">
-          <img src="images/user.jpg" alt />
-          <span>123</span>
-        </li>
-        <li class="singer-item">
-          <img src="images/user.jpg" alt />
-          <span>123</span>
-        </li>
-        <li class="singer-item">
-          <img src="images/user.jpg" alt />
-          <span>123</span>
-        </li>
-        <li class="singer-item">
-          <img src="images/user.jpg" alt />
-          <span>123</span>
-        </li>
-        <li class="singer-item">
-          <img src="images/user.jpg" alt />
-          <span>123</span>
-        </li>
-        <li class="singer-item">
-          <img src="images/user.jpg" alt />
-          <span>13</span>
+        <li class="singer-item" v-for="(elem,i) of singer" :key="i">
+          <img :src="elem.singer_img" alt />
+          <span v-text="elem.singer_name"></span>
         </li>
       </ul>
     </div>
@@ -46,11 +22,7 @@
         <span>相关歌曲</span>
         <img src="images/ic_round_arrow_back_ios_white_24px.png" alt />
       </router-link>
-      <song-item :obj="list"></song-item>
-      <song-item :obj="list"></song-item>
-      <song-item :obj="list"></song-item>
-      <song-item :obj="list"></song-item>
-      <song-item :obj="list"></song-item>
+      <!-- <song-item></song-item> -->
     </div>
     <div class="content-box inner-border">
       <router-link to="/" class="title">
@@ -59,10 +31,7 @@
       </router-link>
       <div class="album">
         <div class="album_content">
-          <album-singer></album-singer>
-          <album-singer></album-singer>
-          <album-singer></album-singer>
-          <album-singer></album-singer>
+          <!-- <album-singer></album-singer> -->
         </div>
       </div>
     </div>
@@ -74,31 +43,42 @@ import backHeader from "../components/back_header";
 import songItem from "../components/songItem";
 import albumSinger from "../components/albumSinger";
 export default {
-  data(){
+  data() {
     return {
-       list:{s_id: 1
-      ,s_img: "http://176.122.14.69:8080/songimgs/01.jpg"
-      ,s_name: "青花瓷"
-      ,s_singerID: 1
-      ,s_status: 1
-      ,s_video: "http://176.122.14.69:8080/青花瓷/青花瓷.mp3"
-      ,singer_name: "周杰伦"}
-    }
-    
+      singer: [],
+      sing:[],
+      album:[]
+    };
   },
-  components: {
+  methods:{
+    getlist(){
+      this.axios.get('/tag?tid=1').then(res=>{
+        // console.log(res.data[0]);
+        this.singer=res.data[0].slice(0,7);
+        console.log(this.singer);
+        this.sing=res.data[0].slice(0,5);
+        console.log(this.sing);
+        this.album=res.data[1].slice(0,6);
+        console.log(this.album);
+      });
+    }
+  },
+  components:{
     backHeader,
     songItem,
     albumSinger
+  },
+  created(){
+    this.getlist();
   }
 };
 </script>
 
 <style scoped>
-.top-img-span{
-	position: absolute;
-	left: 1rem;
-	bottom: 1rem;
+.top-img-span {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
 }
 .album .album_content {
   display: flex;
@@ -129,21 +109,21 @@ export default {
 }
 .singer-item span {
   opacity: 0.6;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
   overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
   height: 2.4rem;
 }
 .singer-item img {
   width: 100%;
+  height: 100%;
   border-radius: 50%;
 }
-.top-img{
-	position: relative;
-
+.top-img {
+  position: relative;
 }
-.top-img img {  width: 100%;
+.top-img img {
+  width: 100%;
 }
 .content-box .title {
   display: flex;

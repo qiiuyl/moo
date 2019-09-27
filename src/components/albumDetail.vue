@@ -20,7 +20,7 @@
       <div class="my-small size">114播放 2收藏</div>
       <div class="my-small subtitle" v-text="album.a_describe"></div>
     </div>
-    <!-- <song-list></song-list> -->
+    <song-list :songlist="sing" :hiddenimg="true"></song-list>
   </div>
 </template>
 
@@ -48,9 +48,10 @@ export default {
     tag,
     songList
   },
+  props:['aid'],
   methods: {
     get_list() {
-      this.axios.get("/albumDetail?aid=1").then(result => {
+      this.axios.get("/albumDetail?aid="+this.aid).then(result => {
         console.log(result.data);
         this.album=result.data[0][0];
         this.singer=result.data[1][0];
@@ -75,6 +76,9 @@ export default {
 </script>
 
 <style scoped>
+.playlist-detail{
+  padding-bottom: 5rem;
+}
 .tag-box {
   width: 100%;
   overflow: hidden;
@@ -98,6 +102,7 @@ export default {
 .user img {
   width: 2.2rem;
   vertical-align: middle;
+  border-radius: 50%;
 }
 .user span {
   margin-left: 0.8rem;

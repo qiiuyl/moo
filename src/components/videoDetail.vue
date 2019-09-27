@@ -1,5 +1,5 @@
 <template>
-  <div class="video-detail">
+  <div class="video-detail pb">
     <back-header :title="'视频详情'" :bgcolor="true"></back-header>
     <div class="fill"></div>
     <video :src="name.v_origin" :poster="name.v_img" controls></video>
@@ -21,10 +21,10 @@
         <tag v-for="(elem,i) of tag" :key="i" :tagName="elem.t_name"></tag>
       </div>
     </div>
-    <div class="content-box inner-border">
+    <!-- <div class="content-box inner-border">
       <span class="title">关联歌曲</span>
-      <song-item></song-item>
-    </div>
+      <song-item :al="'1'"></song-item>
+    </div> -->
     <div class="content-box inner-border">
       <span class="title">接下来播放</span>
       <!-- <song-item></song-item> -->
@@ -72,9 +72,10 @@ export default {
     comment,
     backHeader
   },
+  props:['vid'],
   methods: {
     get_video(){
-      this.axios.get("./video?vid=1").then(result=>{
+      this.axios.get("./video?vid="+this.vid).then(result=>{
         console.log(result.data);
         this.tag=result.data[2];
         this.name=result.data[0][0];

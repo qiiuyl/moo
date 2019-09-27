@@ -18,7 +18,9 @@ export default {
 
   data() {
     return {
-      list:[]
+      list:[
+        {a_describe:''},{a_describe:''},{a_describe:''}
+      ]
     };
   },
   methods: {

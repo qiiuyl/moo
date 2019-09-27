@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-    <song-item v-for="(elem,i) of songlist" :key="i" :is_select="showSelect" :obj="elem"></song-item>
+    <song-item v-for="(elem,i) of songlist" :key="i" :is_select="showSelect" :obj="elem" :hiddenimg="hiddenimg"></song-item>
   </div>
 </template>
 <script>
@@ -28,7 +28,8 @@ export default {
     };
   },
   props:[
-    'songlist'
+    'songlist',
+    'hiddenimg'
   ],
   methods: {
     get_time() {

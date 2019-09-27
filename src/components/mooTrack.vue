@@ -29,7 +29,7 @@ export default {
     },
     get_list() {
       this.axios.get("/newsong").then(result => {
-        this.list = result.data;
+        this.list = result.data[1];
       });
     },
     changeShow() {

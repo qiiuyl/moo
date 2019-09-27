@@ -7,30 +7,30 @@
     </router-link>
     <div class="lists">
       <div class="first-item">
-        <router-link class="list-item" to="/playDetail">
+        <router-link class="list-item" :to="`/playDetail/${list[0].lid}`">
           <img :src="list[0].l_img" alt class="listimg" />
           <tag :place="true" :tagName="list[0].t_name"></tag>
           <icon></icon>
         </router-link>
         <div class="first-info">
           <img src="images/ic_bk_text_20_plus_detail.png" alt />
-          <span>{{list[0].l_describe}}</span>
+          <span>{{list[0].l_title}}</span>
         </div>
       </div>
       <div class="list-item">
-        <div class="list-top">
+        <router-link class="list-top" :to="`/playDetail/${list[1].lid}`">
           <img :src="list[1].l_img" alt class="listimg" />
           <tag :place="true" :tagName="list[1].t_name"></tag>
           <icon></icon>
-        </div>
+        </router-link>
         <span class="list-info">{{list[1].l_title}}</span>
       </div>
       <div class="list-item">
-        <div class="list-top">
+        <router-link class="list-top" :to="`/playDetail/${list[2].lid}`">
           <img :src="list[2].l_img" alt class="listimg" />
           <tag :place="true" :tagName="list[2].t_name"></tag>
           <icon></icon>
-        </div>
+        </router-link>
         <span class="list-info">{{list[2].l_title}}</span>
       </div>
     </div>
@@ -51,7 +51,7 @@ export default {
     get_list() {
       this.axios.get("/playlist").then(result => {
         this.list = result.data;
-        // console.log(this.list);
+        console.log(this.list);
         // this.time = this.list[0].l_time.slice(0, 10);
       });
     }
