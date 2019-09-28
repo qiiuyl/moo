@@ -51,14 +51,15 @@ export default {
       album:[]
     };
   },
+  props:['tid'],
   methods:{
     getlist(){
-      this.axios.get('/tag?tid=1').then(res=>{
-        console.log(res.data);
+      this.axios.get('/tag?tid='+this.tid).then(res=>{
+        // console.log(res.data);
         this.singer=res.data[0].slice(0,7);
-        console.log(this.singer);
+        // console.log(this.singer);
         this.sing=res.data[0].slice(0,5);
-        console.log(this.sing);
+        // console.log(this.sing);
         this.album=res.data[1].slice(0,6);
         // console.log(this.album);
       });

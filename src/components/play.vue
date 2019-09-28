@@ -58,22 +58,19 @@
       <div id="tag">
         <ul>
           <li>
-            <tag :place="false"></tag>
+            <tag :tagName="'新歌推荐'" :place="false"></tag>
           </li>
           <li>
-            <tag :place="false"></tag>
+            <tag :tagName="'热门'" :place="false"></tag>
           </li>
           <li>
-            <tag :place="false"></tag>
+            <tag :tagName="'个性单曲'" :place="false"></tag>
           </li>
           <li>
-            <tag :place="false"></tag>
+            <tag :tagName="'爆红'" :place="false"></tag>
           </li>
           <li>
-            <tag :place="false"></tag>
-          </li>
-          <li>
-            <tag :place="false"></tag>
+            <tag :tagName="'爆款单曲'" :place="false"></tag>
           </li>
         </ul>
       </div>

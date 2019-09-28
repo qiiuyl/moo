@@ -34,7 +34,7 @@ export default {
     get_list(){
       this.axios.get("/newsong").then(result=>{
         this.list=result.data[1].slice(0,5);
-        console.log(this.list);
+        // console.log(this.list);
       })
     }
   },

@@ -9,10 +9,10 @@
     </div>
     <div class="list-info">                            <!-- slice 截取 -->
         <span class="my-small bold" v-text="album.a_time.slice(0,10)"></span>
-      <div class="title">
+      <!-- <div class="title">
         <span v-text="album.a_name"></span>
         <img src="images/ic_user_profile_favor.png" alt />
-      </div>
+      </div> -->
       <div class="user">
         <img :src="singer.singer_img" alt />
         <span class="username my-small" v-text="singer.singer_name"></span>
@@ -52,7 +52,7 @@ export default {
   methods: {
     get_list() {
       this.axios.get("/albumDetail?aid="+this.aid).then(result => {
-        console.log(result.data);
+        // console.log(result.data);
         this.album=result.data[0][0];
         this.singer=result.data[1][0];
         this.sing=result.data[2];

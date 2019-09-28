@@ -1,20 +1,6 @@
 <template>
-  <div class="inner-border">
-    <div id="header">
-      <mt-header>
-        <router-link to="/" slot="left">
-          <mt-button>
-            <img class="return-img" src="../../public/images/ic_round_arrow_back_ios_white_24px.png"/>
-          </mt-button>
-        </router-link>
-        <mt-button slot="right">
-          <img src="../../public/images/ic_bk_share_white_30dp.png" alt />
-        </mt-button>
-        <mt-button slot="right">
-          <img src="../../public/images/ic_bk_more_horizontal_fat_white_48dp.png" alt />
-        </mt-button>
-      </mt-header>
-    </div>
+  <div class="inner-border singer">
+    <back-header></back-header>
     <div class="clear"></div>
     <!-- 清除固定定位的影响 -->
     <div id="singer_img">
@@ -22,7 +8,7 @@
     </div>
     <div id="content">
       <div id="title">
-        <p>Foals(小马乐团)</p>
+        <p>{{singer.singer_name}}</p>
         <div id="fllow">
           <img src="../../public/images/fllow.png" alt />
           <p>16</p>
@@ -30,55 +16,36 @@
       </div>
       <div
         class="singer_describe my-small"
-      >我不认识小马乐团我不认识小马乐团我不认识小马乐团我不认识小马乐团我不认识小马乐团我不认识小马乐团我不认识小马乐团我不认识小马乐团我不认识小马乐团我不认识小马乐团我不认识小马乐团我不认识小马乐团</div>
+      >{{singer.singer_intr}}</div>
     </div>
 
     <div id="main-list">
       <div id="singer-song" v-for="(item,index) of list" :key="index">
         <div class="track">
           <router-link class="list-header" to="/">
-            <span class="my-title">{{item.name}}</span>
+            <span class="my-title">{{item.title}}</span>
             <img src="images/ic_round_arrow_back_ios_white_24px.png" alt />
           </router-link>
         </div>
         <div v-if="item.id=='singer-song'">
-          <song-item></song-item>
-          <song-item></song-item>
-          <song-item></song-item>
-          <song-item></song-item>
-          <song-item></song-item>
+          <song-item v-for="(item,index) of item.name" :key="index" :obj="item"></song-item>
         </div>
         <div v-if="item.id=='album'">
           <div class="album">
             <div class="album_content">
-              <albumSinger></albumSinger>
-              <albumSinger></albumSinger>
-              <albumSinger></albumSinger>
-              <albumSinger></albumSinger>
+              <albumSinger v-for="(item,index) of item.name" :key="index" :obj="item"></albumSinger>
             </div>
           </div>
         </div>
         <div v-if="item.id=='singer-video'" :id=item.id>
           <ul>
             <li class="video-list">
-              <img src="images/video.jpg" alt />
-              <p>Who You Love</p>
-            </li>
-            <li class="video-list">
-              <img src="images/video.jpg" alt />
-              <p>Who You Love</p>
-            </li>
-            <li class="video-list">
-              <img src="images/video.jpg" alt />
-              <p>Who You Love</p>
-            </li>
-            <li class="video-list">
-              <img src="images/video.jpg" alt />
-              <p>Who You Love</p>
+              <img :src="list[2].name.v_img" alt />
+              <p>{{list[2].name.v_name}}</p>
             </li>
           </ul>
         </div>
-        <div v-if="item.id=='affect-singer'" :id=item.id>
+        <!-- <div v-if="item.id=='affect-singer'" :id=item.id>
           <ul>
             <li>
               <img src="../../public/images/jielun.jpg" alt />
@@ -97,7 +64,7 @@
               <p class="my-small">Boy Dylan</p>
             </li>
           </ul>
-        </div>
+        </div> -->
     </div>
   </div>
   </div>
@@ -112,24 +79,46 @@ export default {
         "../../public/images/ic_bk_share_white_30dp.png",
         "../../public/images/ic_bk_more_horizontal_fat_white_48dp.png"
       ],
+      singer:{},
+      sing:[],
+      album:[],
+      video:{},
       list:[
-        {id:"singer-song",name:"歌曲"},
-        {id:"album",name:"专辑"},
-        {id:"album",name:"EP/Single"},
-        {id:"singer-video",name:"视频"},
-        {id:"affect-singer",name:"影响TA的人"},
-        {id:"affect-singer",name:"TA影响的人"},
-        {id:"affect-singer",name:"相似艺人"},
-      ],
+        {id:"singer-song",name:[],title:'相关歌曲'},
+        {id:"album",name:[],title:'相关专辑'},
+        {id:"singer-video",name:[],title:'相关视频'},
+        // {id:"affect-singer",name:[],title:'影响歌手'}
+      ]
     };
+  },
+  methods:{
+    getlist(){
+      this.axios.get('/singerDetail?sid=1').then(res=>{
+        // console.log(res.data);
+        this.singer=res.data[0][0];
+        // console.log(this.singer);
+        this.list[0].name=res.data[1].slice(0,5);
+        // console.log(this.sing);
+        this.list[1].name=res.data[3].slice(0,6);
+        // console.log(this.album);
+        this.list[2].name=res.data[4][0];
+        // console.log(this.video);
+    });
+    }
   },
   components: {
     songItem,
     albumSinger
+  },
+  created(){
+    this.getlist();
   }
 };
 </script>
 <style scoped>
+.singer{
+  padding-bottom: 5rem;
+}
 .my-title {
   font-size: 1rem;
   color: #999;
@@ -242,12 +231,12 @@ export default {
 }
 #singer-video ul {
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   flex-wrap: wrap;
 }
 #singer-video .video-list {
   width: 45%;
-  margin: 0.5rem 0;
+  /* margin: 0.5rem 0; */
 }
 #singer-video .video-list img {
   width: 100%;

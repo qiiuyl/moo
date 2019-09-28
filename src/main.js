@@ -24,7 +24,7 @@ Vue.component("backHeader", backHeader);
 Vue.config.productionTip = false;
 // 配置axios默认基础路径
 // axios.defaults.baseURL = "http://192.168.1.104:5050";
-axios.defaults.baseURL = "http://176.122.14.69:8080";
+axios.defaults.baseURL = "http://176.122.14.70:5050";
 // 注册mintUI
 Vue.use(mintUI);
 // 注册axios

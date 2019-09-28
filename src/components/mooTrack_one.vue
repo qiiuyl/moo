@@ -34,7 +34,7 @@ export default {
   methods: {
     get_time() {
       this.time = new Date().toLocaleDateString();
-      console.log(this.songlist)
+      // console.log(this.songlist)
     },
     changeShow() {
       this.showSelect = !this.showSelect;

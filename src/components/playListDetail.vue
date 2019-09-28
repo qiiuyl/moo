@@ -8,10 +8,10 @@
       <music-icon></music-icon>
     </div>
     <div class="list-info">
-      <div class="title">
+      <!-- <div class="title">
         <span v-text="list.l_title"></span>
         <img src="images/ic_user_profile_favor.png" alt />
-      </div>
+      </div> -->
       <div class="user">
         <img :src="list.u_img" alt />
         <span class="username my-small" v-text="list.u_name"></span>

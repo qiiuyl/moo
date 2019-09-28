@@ -4,11 +4,11 @@
     <div class="fill"></div>
     <video :src="name.v_origin" :poster="name.v_img" controls></video>
     <div class="list-info inner-border">
-      <div class="title">
+      <!-- <div class="title">
         <span v-text="name.v_Subheading"></span>
         <img src="images/ic_user_profile_favor.png" alt />
         <img src="images/ic_bk_more_horizontal_fat_white_48dp.png" alt />
-      </div>
+      </div> -->
       <div class="user">
         <img :src="singer.singer_img" alt />
         <span class="username my-small">丘某丽</span>
@@ -76,7 +76,7 @@ export default {
   methods: {
     get_video(){
       this.axios.get("./video?vid="+this.vid).then(result=>{
-        console.log(result.data);
+        // console.log(result.data);
         this.tag=result.data[2];
         this.name=result.data[0][0];
         this.singer=result.data[1][0];
@@ -219,6 +219,7 @@ export default {
 .user img {
   width: 2.2rem;
   vertical-align: middle;
+  border-radius: 50%;
 }
 .user span {
   margin-left: 0.8rem;
@@ -257,7 +258,8 @@ export default {
   width: 90%;
 }
 .list-info .title img {
-  width: 8%;
+  width: 1rem;
+  height: 100%;
   opacity: 0.8;
   margin-left: 0.5rem;
 }

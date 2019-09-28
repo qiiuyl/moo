@@ -1,6 +1,6 @@
 <template>
 <div>
-	<router-link to="/" class="my-small list-tag" :class="place?'place':''">{{tagName}}</router-link>
+	<router-link to="/tagpage/1" class="my-small list-tag" :class="place?'place':''">{{tagName}}</router-link>
 </div>
 </template>
 

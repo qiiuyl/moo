@@ -23,7 +23,7 @@
         </button>
       </div>
     </div>
-    <audio id="audio" :src="$store.getters.getSingUrl"></audio>
+    <audio id="audio" :src="$store.getters.getSingUrl" preload="auto"></audio>
   </div>
 </template>
 <script>
@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     showplayer(bool) {
-      console.log("执行成功");
+      // console.log("执行成功");
       if (bool) {
         this.$refs.player.style.display = 'flex';
         this.$refs.player.style.opacity = 1;
@@ -57,7 +57,7 @@ export default {
       this.axios.get("/newsong").then(res => {
         this.$store.commit("setPlaylist", res.data[1]);
         var list = this.$store.getters.getPlaylist;
-        console.log(list);
+        // console.log(list);
         this.$store.commit("setSingUrl", list[0].s_video);
         
         // console.log(res.data);

@@ -18,10 +18,10 @@ export default {
   },
   methods:{
     getlist(){
-      // console.log(this.$refs.video);
+      // (this.$refs.video);
       this.axios.get("/hotVideo").then(result=>{
         this.list=result.data.splice(0,3);
-        console.log(this.list)
+        // (this.list)
       });
     }
   },

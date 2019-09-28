@@ -62,9 +62,8 @@ export default {
             this.$toast({
               message:'登录成功',
               position:'bottom'
-            }).then(res=>{
-              this.$router.push("/user");
             })
+            this.$router.push('/user');
           }
         })
       }

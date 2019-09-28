@@ -51,7 +51,7 @@ export default {
     get_list() {
       this.axios.get("/playlist").then(result => {
         this.list = result.data;
-        console.log(this.list);
+        // console.log(this.list);
         // this.time = this.list[0].l_time.slice(0, 10);
       });
     }

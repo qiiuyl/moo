@@ -26,7 +26,7 @@ export default new Router({
     { path: "/playList_one", component: playList_one },
     { path: "/mooTrack", component: mooTrack },
     { path: "/playDetail/:lid", component: playListDetail, props: true },
-    { path: "/tagpage", component: tagpage },
+    { path: "/tagpage/:tid", component: tagpage,props:true },
     { path: "/album_one", component: album_one },
     { path: "/singer", component: singer },
     { path: "/user", component: user },

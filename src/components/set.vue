@@ -12,7 +12,8 @@
       <a><img slot="icon" src="images/user.jpg" width="28" height="24" style="border-radius:0.1rem"></a>
     </mt-cell>
     <mt-cell title="流量提醒">
-      <mt-switch v-model="value"></mt-switch>
+      <mt-switch></mt-switch>
+       <!-- v-model="value" -->
     </mt-cell>
     <mt-cell title="定时关闭" is-link></mt-cell>
     <mt-cell title="清除缓存" value="41.3M"></mt-cell>
